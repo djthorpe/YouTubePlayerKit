@@ -1,10 +1,3 @@
-//
-//  AppDelegate.m
-//  YouTubePlayer
-//
-//  Created by David Thorpe on 27/04/2013.
-//
-//
 
 #import "AppDelegate.h"
 
