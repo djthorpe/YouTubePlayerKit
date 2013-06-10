@@ -1,4 +1,4 @@
-
+ 
 window.YouTubePlayer = {
 	insert: function(params) {
 		var YOUTUBE_CONTROLS_HEIGHT = 30;
