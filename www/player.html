@@ -14,26 +14,27 @@
 			'videoId': '3_Hui5KEgL8',
 			'playerOptions': {
 				'width': 742,
+				'height': 417,
 				'playerVars': { 
 					'autoplay': 1, 'modestbranding': 1, 'autohide': 1, 'controls': 2
 				},
-				'onReady': {
-					if(console.log) {
+				'onReady': function () {
+					if (typeof console != "undefined") { 
 						console.log('onReady');
 					}
 				},
-				'onStateChange': {
-					if(console.log) {
+				'onStateChange': function () {
+					if (typeof console != "undefined")  {
 						console.log('onStateChange');
 					}
 				},
-				'onPlaybackQualityChange': {
-					if(console.log) {
+				'onPlaybackQualityChange': function () {
+					if (typeof console != "undefined")  {
 						console.log('onPlaybackQualityChange');
 					}
 				},
-				'onError': {
-					if(console.log) {
+				'onError': function () {
+					if (typeof console != "undefined")  {
 						console.log('onError');
 					}
 				}
