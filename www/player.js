@@ -23,7 +23,7 @@ window.YouTubePlayer = {
 					}
 				};
 				var scriptTag = document.createElement('script');
-				scriptTag.src = 'http://www.youtube.com/player_api';
+				scriptTag.src = 'https://www.youtube.com/player_api';
 				var firstScriptTag = document.getElementsByTagName('script')[0];
 				firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag);
 			}
