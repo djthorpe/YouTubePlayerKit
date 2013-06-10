@@ -1,3 +1,43 @@
-
-
-<iframe width="853" height="480" src="http://www.youtube.com/embed/3_Hui5KEgL8?rel=0" frameborder="0" allowfullscreen></iframe>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<title>Player Test for iOS</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="player.js"></script>
+</head>
+<body>
+	<h1>Player Test for iOS</h1>
+	<div id="iframe-player"></div>
+	<script type="text/javascript">
+		YouTubePlayer.insert({
+			'container': 'iframe-player',
+			'videoId': '3_Hui5KEgL8',
+			'playerOptions': {
+				'width': 742,
+				'playerVars': { 
+					'autoplay': 1, 'modestbranding': 1, 'autohide': 1, 'controls': 2
+				},
+				'onReady': {
+					if(console.log) {
+						console.log('onReady');
+					}
+				},
+				'onStateChange': {
+					if(console.log) {
+						console.log('onStateChange');
+					}
+				},
+				'onPlaybackQualityChange': {
+					if(console.log) {
+						console.log('onPlaybackQualityChange');
+					}
+				},
+				'onError': {
+					if(console.log) {
+						console.log('onError');
+					}
+				}
+			}
+		});
+	</script>
+</body></html>
