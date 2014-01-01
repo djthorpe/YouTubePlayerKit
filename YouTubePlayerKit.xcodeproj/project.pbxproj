@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6E9B649818743EE30018A427 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9B649718743EE30018A427 /* Cocoa.framework */; };
+		6E9B64D21874413A0018A427 /* YouTubePlayerMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9B64D11874413A0018A427 /* YouTubePlayerMain.xib */; };
+		6E9B64D3187441B70018A427 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B64CE18743F8A0018A427 /* AppDelegate.m */; };
+		6E9B64D4187441BA0018A427 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B64CF18743F8A0018A427 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +20,7 @@
 		6E9B64CE18743F8A0018A427 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6E9B64CF18743F8A0018A427 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6E9B64D0187440390018A427 /* YouTubePlayer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YouTubePlayer-Info.plist"; sourceTree = "<group>"; };
+		6E9B64D11874413A0018A427 /* YouTubePlayerMain.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YouTubePlayerMain.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 				6E9B64CD18743F8A0018A427 /* AppDelegate.h */,
 				6E9B64CE18743F8A0018A427 /* AppDelegate.m */,
 				6E9B64CF18743F8A0018A427 /* main.m */,
+				6E9B64D11874413A0018A427 /* YouTubePlayerMain.xib */,
 			);
 			path = YouTubePlayer;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E9B64D21874413A0018A427 /* YouTubePlayerMain.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +158,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E9B64D4187441BA0018A427 /* main.m in Sources */,
+				6E9B64D3187441B70018A427 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +203,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "YouTubePlayer/YouTubePlayer-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -238,7 +245,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "YouTubePlayer/YouTubePlayer-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
