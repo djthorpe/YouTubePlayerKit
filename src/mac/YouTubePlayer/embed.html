@@ -1,0 +1,92 @@
+<html>
+<head>
+	<style type="text/css">
+		body {
+			margin: 0px;
+			background-color: #000;
+			color: #fff;
+		}
+		#container {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<script type="text/javascript">
+	var player = null;
+	var parameters = {
+		'controls': 0,
+		'modestbranding': 1,
+		'rel': 0,
+		'disablekb': 1,
+		'fs': 0,
+		'showinfo': 0
+	};
+	function RequestVideoWithID(videoid) {
+		var container = document.getElementById('container');
+		var width_px = window.document.body.scrollWidth;
+		var height_px = window.document.body.scrollHeight;
+		if(!YT.Player) {
+			return false;
+		}
+		player = new YT.Player(container,{
+			videoId: videoid,
+			width: width_px,
+			height: height_px,
+			playerVars: parameters,
+			events: {
+				onReady: onReady,
+				onStateChange: onStateChange,
+				onPlaybackQualityChange: onPlaybackQualityChange,
+				onError: onError
+			}
+		});
+		return true;
+	}
+	function PlayVideoFromStart() {
+		if(!YT.Player) {
+			return false;
+		}
+		if(player==null) {
+			return false;
+		}
+		player.seekTo(0,true);
+		player.playVideo();
+		return true;
+	}
+	function CurrentTime() {
+		if(!YT.Player) {
+			return -1.0;
+		}
+		if(player==null) {
+			return -1.0;
+		}
+		var currentTime = player.getCurrentTime();
+		if(currentTime) {
+			return currentTime;
+		} else {
+			return 0.0;
+		}
+	}
+	window.onYouTubePlayerAPIReady = function() {
+		console.onYouTubePlayerAPIReady();
+	}
+	function onReady(evt) {
+		console.onReady(evt.data);
+	}
+	function onStateChange(evt) {
+		console.onStateChange(evt.data);
+	}
+	function onPlaybackQualityChange(evt) {
+		console.onPlaybackQualityChange(evt.data);
+	}
+	function onError(evt) {
+		console.onError(evt.data);
+	}
+	</script>
+	<script type="text/javascript" src="https://www.youtube.com/player_api"></script>
+</head>
+<body>
+	<div id="container"></div>
+<!-- iframe width="100%" height="100%" src="/embed/I712YXdJ6_0?rel=0&controls=0" frameborder="0" allowfullscreen></iframe -->
+</body>
+
