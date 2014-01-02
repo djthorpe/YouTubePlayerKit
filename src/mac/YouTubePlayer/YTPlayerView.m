@@ -25,7 +25,7 @@
 
 -(void)awakeFromNib {
 	// add webview subview and set ourselves as delegate
-	NSRect frame = [self frame];
+	NSRect frame = NSMakeRect(0,0,[self frame].size.width,[self frame].size.height);
 	[self setWebView:[[WebView alloc] initWithFrame:frame]];
 	[self addSubview:[self webView]];
 	[[self webView] setUIDelegate:self];
@@ -47,6 +47,7 @@
 @dynamic currentTime;
 @dynamic duration;
 @dynamic qualityValues;
+@dynamic volume;
 
 -(NSTimeInterval)duration {
 	NSParameterAssert(_loaded);
@@ -100,6 +101,18 @@
 		}
 	}
 	return qualities;
+}
+
+-(NSUInteger)volume {
+	NSParameterAssert(_loaded);
+	NSNumber* value = [[[self webView] windowScriptObject] callWebScriptMethod:@"GetVolume" withArguments:nil];
+	NSParameterAssert([value isKindOfClass:[NSNumber class]]);
+	return [value unsignedIntegerValue];
+}
+
+-(void)setVolume:(NSUInteger)value {
+	NSParameterAssert(value <= 100);
+	[[[self webView] windowScriptObject] callWebScriptMethod:@"SetVolume" withArguments:[NSArray arrayWithObject:[NSNumber numberWithUnsignedInteger:value]]];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -226,6 +239,15 @@
 
 -(void)_js_log :(NSString* )theMessage {
     NSLog(@"LOG: %@", theMessage);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark NSVIEW
+
+-(void)drawRect:(NSRect)dirtyRect {
+    [[NSColor greenColor] setFill];
+    NSRectFill(dirtyRect);
+    [super drawRect:dirtyRect];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

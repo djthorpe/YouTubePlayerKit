@@ -648,8 +648,8 @@
                         <rect key="frame" x="20" y="19" width="63" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="63" id="NNQ-so-vgt"/>
-                            <constraint firstAttribute="height" constant="16" id="plY-Io-SML"/>
+                            <constraint firstAttribute="height" constant="16" id="4mz-aE-R9E"/>
+                            <constraint firstAttribute="width" constant="63" id="GMj-Br-cMa"/>
                         </constraints>
                         <buttonCell key="cell" type="inline" title="Time" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="NyZ-s7-nma">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -661,11 +661,11 @@
                         </connections>
                     </button>
                     <button identifier="duration" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hfa-7Y-wuJ" userLabel="Duration">
-                        <rect key="frame" x="482" y="19" width="63" height="17"/>
+                        <rect key="frame" x="448" y="19" width="63" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16" id="YGU-CO-ROL"/>
-                            <constraint firstAttribute="width" constant="63" id="x3D-VP-x71"/>
+                            <constraint firstAttribute="height" constant="16" id="Ig5-rX-eZq"/>
+                            <constraint firstAttribute="width" constant="63" id="KCJ-p0-omd"/>
                         </constraints>
                         <buttonCell key="cell" type="inline" title="Duration" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="etm-O5-E1j">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -676,7 +676,7 @@
                         </connections>
                     </button>
                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V4P-fg-y93" userLabel="Slider">
-                        <rect key="frame" x="89" y="18" width="387" height="21"/>
+                        <rect key="frame" x="89" y="18" width="353" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="No2-hI-5Ld"/>
                         <connections>
@@ -692,12 +692,12 @@
                         </connections>
                     </customView>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j6t-WU-DAg">
-                        <rect key="frame" x="553" y="18" width="67" height="19"/>
+                        <rect key="frame" x="519" y="18" width="67" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="67" id="hfd-mx-bvI"/>
+                            <constraint firstAttribute="width" constant="67" id="Xr4-vI-ZvX"/>
                         </constraints>
-                        <popUpButtonCell key="cell" type="roundRect" title="Qual" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" continuous="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="88I-FR-H0Q">
+                        <popUpButtonCell key="cell" type="roundRect" title="Qual" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="88I-FR-H0Q">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="cellTitle"/>
                             <menu key="menu" title="OtherViews" id="Gyl-Qs-lRA">
@@ -708,26 +708,48 @@
                         </popUpButtonCell>
                         <connections>
                             <action selector="doSetQuality:" target="Pmo-K5-pzI" id="FdT-hj-Vzh"/>
-                            <binding destination="Pmo-K5-pzI" name="content" keyPath="qualityValues" id="bqm-8C-xC5"/>
                         </connections>
                     </popUpButton>
+                    <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y7V-kt-QwC">
+                        <rect key="frame" x="592" y="13" width="28" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="circular" id="fum-ta-Q26"/>
+                        <connections>
+                            <action selector="doVolume:" target="Pmo-K5-pzI" id="W7P-iU-kzy"/>
+                            <binding destination="Pmo-K5-pzI" name="value" keyPath="volumeValue" id="l7k-VQ-qmW"/>
+                        </connections>
+                    </slider>
+                    <box autoresizesSubviews="NO" horizontalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nar-wL-rYa">
+                        <rect key="frame" x="603" y="39" width="5" height="7"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="mX7-8x-9H8" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" id="B8M-T0-MTI"/>
-                    <constraint firstAttribute="trailing" secondItem="j6t-WU-DAg" secondAttribute="trailing" constant="20" symbolic="YES" id="HnJ-ce-sBi"/>
-                    <constraint firstItem="j6t-WU-DAg" firstAttribute="baseline" secondItem="hfa-7Y-wuJ" secondAttribute="baseline" id="NNL-qS-LQ8"/>
-                    <constraint firstItem="V4P-fg-y93" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="8" id="ULu-cB-79u"/>
-                    <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="Yva-SP-nKI"/>
-                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="Zu3-sb-4s7"/>
-                    <constraint firstItem="j6t-WU-DAg" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="8" symbolic="YES" id="aFq-Kr-j2e"/>
-                    <constraint firstAttribute="trailing" secondItem="mX7-8x-9H8" secondAttribute="trailing" id="aav-lm-JZw"/>
-                    <constraint firstItem="zCV-c2-6zi" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" constant="20" id="cf9-Fj-h1f"/>
-                    <constraint firstAttribute="bottom" secondItem="V4P-fg-y93" secondAttribute="bottom" constant="20" id="kAt-Zw-rUz"/>
-                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="lVP-AX-6w3"/>
-                    <constraint firstAttribute="bottom" secondItem="hfa-7Y-wuJ" secondAttribute="bottom" constant="20" id="n3v-Vz-kTZ"/>
-                    <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="n4F-lu-ZTL"/>
-                    <constraint firstAttribute="bottom" secondItem="zCV-c2-6zi" secondAttribute="bottom" constant="20" id="omj-6n-SG0"/>
-                    <constraint firstItem="mX7-8x-9H8" firstAttribute="top" secondItem="gjG-xx-85g" secondAttribute="top" id="yha-sB-IJb"/>
+                    <constraint firstAttribute="trailing" secondItem="nar-wL-rYa" secondAttribute="trailing" constant="34" id="5UL-gq-6ia"/>
+                    <constraint firstAttribute="bottom" secondItem="zCV-c2-6zi" secondAttribute="bottom" constant="20" symbolic="YES" id="8nf-pD-jaQ"/>
+                    <constraint firstAttribute="trailing" secondItem="Y7V-kt-QwC" secondAttribute="trailing" constant="22" id="Dea-hl-PQF"/>
+                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="EoP-0B-QFe"/>
+                    <constraint firstItem="nar-wL-rYa" firstAttribute="top" secondItem="gjG-xx-85g" secondAttribute="top" constant="354" id="NXS-Fo-BY0"/>
+                    <constraint firstItem="j6t-WU-DAg" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="8" symbolic="YES" id="QfK-II-qLO"/>
+                    <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="Soh-sJ-J8I"/>
+                    <constraint firstItem="mX7-8x-9H8" firstAttribute="top" secondItem="gjG-xx-85g" secondAttribute="top" id="T4V-fx-PEy"/>
+                    <constraint firstItem="j6t-WU-DAg" firstAttribute="baseline" secondItem="hfa-7Y-wuJ" secondAttribute="baseline" id="ToS-N5-267"/>
+                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="baseline" secondItem="zCV-c2-6zi" secondAttribute="baseline" id="Uwa-do-hE4"/>
+                    <constraint firstItem="j6t-WU-DAg" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="8" id="VS1-Re-7wN"/>
+                    <constraint firstItem="j6t-WU-DAg" firstAttribute="centerY" secondItem="Y7V-kt-QwC" secondAttribute="centerY" id="Xn7-5q-XxW"/>
+                    <constraint firstItem="Y7V-kt-QwC" firstAttribute="leading" secondItem="j6t-WU-DAg" secondAttribute="trailing" constant="8" id="ZYu-3n-LGE"/>
+                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="enN-Gn-HuE"/>
+                    <constraint firstItem="zCV-c2-6zi" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" constant="20" id="g5S-KK-vbW"/>
+                    <constraint firstItem="Y7V-kt-QwC" firstAttribute="leading" secondItem="j6t-WU-DAg" secondAttribute="trailing" constant="8" id="jlp-Eb-qkB"/>
+                    <constraint firstItem="mX7-8x-9H8" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" id="kiu-fR-XM9"/>
+                    <constraint firstItem="j6t-WU-DAg" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="8" id="lb1-QW-zAe"/>
+                    <constraint firstAttribute="trailing" secondItem="mX7-8x-9H8" secondAttribute="trailing" id="neQ-b5-pXR"/>
+                    <constraint firstItem="V4P-fg-y93" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="8" symbolic="YES" id="oVm-uJ-Fi9"/>
+                    <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="tmJ-bC-2Ow"/>
+                    <constraint firstAttribute="bottom" secondItem="nar-wL-rYa" secondAttribute="bottom" constant="39" id="yEZ-cI-p7S"/>
                 </constraints>
             </view>
         </window>

@@ -61,6 +61,7 @@ typedef enum {
 @property (retain) WebView* webView;
 @property (assign) NSTimeInterval currentTime;
 @property (assign) YTPlayerViewQualityType quality;
+@property (assign) NSUInteger volume;
 @property (assign,readonly) NSTimeInterval duration;
 @property (assign,readonly) NSUInteger qualityValues;
 

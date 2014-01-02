@@ -24,8 +24,8 @@ struct quality_lookup_t {
 @synthesize duration;
 @synthesize playing;
 @synthesize sliderValue;
+@synthesize volumeValue;
 @synthesize selectedQuality;
-@synthesize qualityValues;
 
 -(id)init {
     self = [super init];
@@ -38,6 +38,7 @@ struct quality_lookup_t {
 -(void)applicationDidFinishLaunching:(NSNotification* )aNotification {
 	[self setQualityValues:[NSArray arrayWithObjects:nil]];
 	[self setSelectedQuality:nil];
+	[self setVolumeValue:50];
 }
 
 -(void)timerWithInterval:(NSTimeInterval)interval {
@@ -56,12 +57,11 @@ struct quality_lookup_t {
 	struct quality_lookup_t q = quality_lookup[index];
 	while(q.name) {
 		if(value==q.value) {
-			NSInteger i = [[self qualityValues] indexOfObject:[NSString stringWithUTF8String:q.name]];
-			if(i != NSNotFound) {
-				NSLog(@"set selected item to %ld",(long)i);
-				[[self qualityMenu] selectItemAtIndex:i];
-				NSLog(@"menu = %@",[self qualityMenu]);
+			NSMenuItem* item = [[[self qualityMenu] menu] itemWithTitle:[NSString stringWithUTF8String:q.name]];
+			if(item) {
+				[[self qualityMenu] selectItem:item];
 			}
+			
 			return;
 		}
 		q = quality_lookup[++index];
@@ -92,22 +92,28 @@ struct quality_lookup_t {
 	return [NSString stringWithFormat:@"%02lu:%02lu:%02lu",(NSUInteger)value,mn,sc];
 }
 
+-(void)addQualityValue:(NSString* )value {
+	NSMenuItem* menuItem = [[self qualityMenu] itemWithTitle:value];
+	if(menuItem==nil) {
+		[[self qualityMenu] addItemWithTitle:value];
+	}
+}
+
 -(void)setPlayingState {
 	[self setPlaying:YES];
 	[self timerWithInterval:0.5];
 	NSUInteger qualities = [[self player] qualityValues];
 	if(qualities) {
-		NSMutableArray* array = [NSMutableArray array];
 		NSInteger index = 0;
 		struct quality_lookup_t q = quality_lookup[index];
 		while(q.name) {
 			if(qualities & q.value) {
-				[array addObject:[NSString stringWithFormat:@"%s",q.name]];
+				[self addQualityValue:[NSString stringWithUTF8String:q.name]];
 			}
 			q = quality_lookup[++index];
 		}
-		[self setQualityValues:array];
 	}
+	[self setVolumeValue:[[self player] volume]];
 }
 
 -(void)player:(YTPlayerView* )sender state:(YTPlayerViewStateType)state {
@@ -130,6 +136,8 @@ struct quality_lookup_t {
 		[self updateQualityWithValue:[[self player] quality]];
 	} else if(state==YTPlayerViewStatePaused) {
 		[self setPlaying:NO];
+	} else if(state==YTPlayerViewStateBuffering) {
+		// Do nothing for buffering...
 	} else {
 		NSLog(@"player state = %d",state);
 	}
@@ -156,9 +164,12 @@ struct quality_lookup_t {
 	NSTimeInterval dur = [[self player] duration];
 	if(dur > 0.0) {
 		NSTimeInterval seekTime = ([self sliderValue] * dur) / 100.0;
-		NSLog(@"seek to %@",[self intervalToString:seekTime]);
 		[[self player] seekTo:seekTime allowSeekAhead:YES];
 	}
+}
+
+-(IBAction)doVolume:(id)sender {
+	[[self player] setVolume:[self volumeValue]];
 }
 
 -(IBAction)doPlayPause:(id)sender {

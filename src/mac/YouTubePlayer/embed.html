@@ -101,6 +101,19 @@
 		if(!values) return null;
 		return values.join(",");
 	}
+	function SetVolume(value) {
+		if(!YT.Player || player==null) return null;
+		if(value >= 0 && value <= 100) {
+			player.setVolume(value);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function GetVolume() {
+		if(!YT.Player || player==null) return null;
+		return player.getVolume();
+	}
 	window.onYouTubePlayerAPIReady = function() {
 		console.onYouTubePlayerAPIReady();
 	}
@@ -120,7 +133,6 @@
 	<script type="text/javascript" src="https://www.youtube.com/player_api"></script>
 </head>
 <body>
-	<div id="container"></div>
-<!-- iframe width="100%" height="100%" src="/embed/I712YXdJ6_0?rel=0&controls=0" frameborder="0" allowfullscreen></iframe -->
+<div id="container"></div>
 </body>
 
