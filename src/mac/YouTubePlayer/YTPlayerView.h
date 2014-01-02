@@ -37,7 +37,8 @@ typedef enum {
 	YTPlayerViewQualityLarge = 0x04,
 	YTPlayerViewQualityHD720 = 0x08,
 	YTPlayerViewQualityHD1080 = 0x0F,
-	YTPlayerViewQualityHiRes = 0x10
+	YTPlayerViewQualityHiRes = 0x10,
+	YTPlayerViewQualityAuto = 0x20
 } YTPlayerViewQualityType;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +62,8 @@ typedef enum {
 @property (assign) NSTimeInterval currentTime;
 @property (assign) YTPlayerViewQualityType quality;
 @property (assign,readonly) NSTimeInterval duration;
-    
+@property (assign,readonly) NSUInteger qualityValues;
+
 // methods
 -(BOOL)load:(NSString* )videoid;
 -(BOOL)play;

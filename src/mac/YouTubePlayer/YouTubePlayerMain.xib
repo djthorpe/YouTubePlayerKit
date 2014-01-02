@@ -630,6 +630,7 @@
         <customObject id="Pmo-K5-pzI" customClass="AppDelegate">
             <connections>
                 <outlet property="player" destination="mX7-8x-9H8" id="T8D-Wz-FnQ"/>
+                <outlet property="qualityMenu" destination="j6t-WU-DAg" id="5DW-7F-0FS"/>
                 <outlet property="window" destination="iBK-yV-Qms" id="y4P-vD-Ufz"/>
             </connections>
         </customObject>
@@ -660,7 +661,7 @@
                         </connections>
                     </button>
                     <button identifier="duration" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hfa-7Y-wuJ" userLabel="Duration">
-                        <rect key="frame" x="508" y="19" width="63" height="17"/>
+                        <rect key="frame" x="482" y="19" width="63" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="YGU-CO-ROL"/>
@@ -674,23 +675,8 @@
                             <binding destination="Pmo-K5-pzI" name="title" keyPath="duration" id="ZeT-CH-y8m"/>
                         </connections>
                     </button>
-                    <button identifier="qual" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7HA-NY-s9m" userLabel="Qual">
-                        <rect key="frame" x="574" y="19" width="46" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="16" id="0EF-5F-y0Z"/>
-                            <constraint firstAttribute="width" constant="46" id="syd-ag-kFx"/>
-                        </constraints>
-                        <buttonCell key="cell" type="inline" title="Qual" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="nwW-Ne-uDe">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystemBold"/>
-                        </buttonCell>
-                        <connections>
-                            <binding destination="Pmo-K5-pzI" name="title" keyPath="quality" id="Wx8-hl-2jT"/>
-                        </connections>
-                    </button>
                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V4P-fg-y93" userLabel="Slider">
-                        <rect key="frame" x="89" y="18" width="413" height="21"/>
+                        <rect key="frame" x="89" y="18" width="387" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="No2-hI-5Ld"/>
                         <connections>
@@ -705,17 +691,36 @@
                             <outlet property="delegate" destination="Pmo-K5-pzI" id="bum-80-DhE"/>
                         </connections>
                     </customView>
+                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j6t-WU-DAg">
+                        <rect key="frame" x="553" y="18" width="67" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="67" id="hfd-mx-bvI"/>
+                        </constraints>
+                        <popUpButtonCell key="cell" type="roundRect" title="Qual" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" continuous="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="88I-FR-H0Q">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="cellTitle"/>
+                            <menu key="menu" title="OtherViews" id="Gyl-Qs-lRA">
+                                <items>
+                                    <menuItem title="Qual" state="on" hidden="YES" id="kB7-UR-yz5"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="doSetQuality:" target="Pmo-K5-pzI" id="FdT-hj-Vzh"/>
+                            <binding destination="Pmo-K5-pzI" name="content" keyPath="qualityValues" id="bqm-8C-xC5"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mX7-8x-9H8" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" id="B8M-T0-MTI"/>
-                    <constraint firstItem="7HA-NY-s9m" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="3" id="I0e-hn-lmH"/>
-                    <constraint firstItem="7HA-NY-s9m" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="3" id="PN3-J8-PRD"/>
-                    <constraint firstAttribute="trailing" secondItem="7HA-NY-s9m" secondAttribute="trailing" constant="20" id="Qgg-a5-cnv"/>
+                    <constraint firstAttribute="trailing" secondItem="j6t-WU-DAg" secondAttribute="trailing" constant="20" symbolic="YES" id="HnJ-ce-sBi"/>
+                    <constraint firstItem="j6t-WU-DAg" firstAttribute="baseline" secondItem="hfa-7Y-wuJ" secondAttribute="baseline" id="NNL-qS-LQ8"/>
                     <constraint firstItem="V4P-fg-y93" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="8" id="ULu-cB-79u"/>
                     <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="Yva-SP-nKI"/>
                     <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="Zu3-sb-4s7"/>
+                    <constraint firstItem="j6t-WU-DAg" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="8" symbolic="YES" id="aFq-Kr-j2e"/>
                     <constraint firstAttribute="trailing" secondItem="mX7-8x-9H8" secondAttribute="trailing" id="aav-lm-JZw"/>
-                    <constraint firstAttribute="bottom" secondItem="7HA-NY-s9m" secondAttribute="bottom" constant="20" id="cQv-RE-BIf"/>
                     <constraint firstItem="zCV-c2-6zi" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" constant="20" id="cf9-Fj-h1f"/>
                     <constraint firstAttribute="bottom" secondItem="V4P-fg-y93" secondAttribute="bottom" constant="20" id="kAt-Zw-rUz"/>
                     <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="lVP-AX-6w3"/>

@@ -2,14 +2,30 @@
 #import "AppDelegate.h"
 #import "YTPlayerView.h"
 
+struct quality_lookup_t {
+	const char* name;
+	YTPlayerViewQualityType value;
+} quality_lookup[] = {
+	{ "Auto", YTPlayerViewQualityAuto },
+	{ "240p", YTPlayerViewQualitySmall },
+	{ "360p", YTPlayerViewQualityMedium },
+	{ "480p", YTPlayerViewQualityLarge },
+	{ "720p", YTPlayerViewQualityHD720 },
+	{ "1080p", YTPlayerViewQualityHD1080 },
+	{ "4K", YTPlayerViewQualityHiRes },
+	{ nil,0 }
+};
+
 @implementation AppDelegate
 @synthesize window;
 @synthesize player;
-@synthesize quality;
+@synthesize qualityMenu;
 @synthesize time;
 @synthesize duration;
 @synthesize playing;
 @synthesize sliderValue;
+@synthesize selectedQuality;
+@synthesize qualityValues;
 
 -(id)init {
     self = [super init];
@@ -20,7 +36,8 @@
 }
 
 -(void)applicationDidFinishLaunching:(NSNotification* )aNotification {
-	[self setQuality:@""];
+	[self setQualityValues:[NSArray arrayWithObjects:nil]];
+	[self setSelectedQuality:nil];
 }
 
 -(void)timerWithInterval:(NSTimeInterval)interval {
@@ -35,29 +52,33 @@
 }
 
 -(void)updateQualityWithValue:(YTPlayerViewQualityType)value {
-	switch(value) {
-		case YTPlayerViewQualitySmall:
-			[self setQuality:@"240p"];
-			break;
-		case YTPlayerViewQualityMedium:
-			[self setQuality:@"360p"];
-			break;
-		case YTPlayerViewQualityLarge:
-			[self setQuality:@"480p"];
-			break;
-		case YTPlayerViewQualityHD720:
-			[self setQuality:@"720p"];
-			break;
-		case YTPlayerViewQualityHD1080:
-			[self setQuality:@"1080p"];
-			break;
-		case YTPlayerViewQualityHiRes:
-			[self setQuality:@"4K"];
-			break;
-		default:
-			[self setQuality:@""];
-			break;
+	NSInteger index = 0;
+	struct quality_lookup_t q = quality_lookup[index];
+	while(q.name) {
+		if(value==q.value) {
+			NSInteger i = [[self qualityValues] indexOfObject:[NSString stringWithUTF8String:q.name]];
+			if(i != NSNotFound) {
+				NSLog(@"set selected item to %ld",(long)i);
+				[[self qualityMenu] selectItemAtIndex:i];
+				NSLog(@"menu = %@",[self qualityMenu]);
+			}
+			return;
+		}
+		q = quality_lookup[++index];
 	}
+	[[self qualityMenu] selectItemAtIndex:-1];
+}
+
+-(YTPlayerViewQualityType)qualityForString:(NSString* )value {
+	NSInteger index = 0;
+	struct quality_lookup_t q = quality_lookup[index];
+	while(q.name) {
+		if(strcmp(q.name,[value UTF8String])==0) {
+			return q.value;
+		}
+		q = quality_lookup[++index];
+	}
+	return YTPlayerViewQualityUnknown;
 }
 
 -(NSString* )intervalToString:(NSTimeInterval)value {
@@ -71,6 +92,24 @@
 	return [NSString stringWithFormat:@"%02lu:%02lu:%02lu",(NSUInteger)value,mn,sc];
 }
 
+-(void)setPlayingState {
+	[self setPlaying:YES];
+	[self timerWithInterval:0.5];
+	NSUInteger qualities = [[self player] qualityValues];
+	if(qualities) {
+		NSMutableArray* array = [NSMutableArray array];
+		NSInteger index = 0;
+		struct quality_lookup_t q = quality_lookup[index];
+		while(q.name) {
+			if(qualities & q.value) {
+				[array addObject:[NSString stringWithFormat:@"%s",q.name]];
+			}
+			q = quality_lookup[++index];
+		}
+		[self setQualityValues:array];
+	}
+}
+
 -(void)player:(YTPlayerView* )sender state:(YTPlayerViewStateType)state {
 	if(state==YTPlayerViewStateAPIReady) {
 		// when API is ready, load in video
@@ -82,8 +121,7 @@
 		[self setPlaying:NO];
 		[[self player] playFromStart];
 	} else if(state==YTPlayerViewStatePlaying) {
-		[self setPlaying:YES];
-		[self timerWithInterval:0.5];
+		[self setPlayingState];
 	} else if(state==YTPlayerViewStateEnded) {
 		NSLog(@"Stopped");
 		[self setPlaying:NO];
@@ -128,6 +166,14 @@
 		[[self player] pause];
 	} else {
 		[[self player] play];
+	}
+}
+
+-(IBAction)doSetQuality:(NSPopUpButton* )sender {
+	NSParameterAssert([sender isKindOfClass:[NSPopUpButton class]]);
+	YTPlayerViewQualityType quality = [self qualityForString:[[sender selectedItem] title]];
+	if(quality != YTPlayerViewQualityUnknown) {
+		[[self player] setQuality:quality];
 	}
 }
 

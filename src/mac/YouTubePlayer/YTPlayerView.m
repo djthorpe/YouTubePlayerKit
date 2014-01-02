@@ -46,6 +46,7 @@
 @synthesize webView;
 @dynamic currentTime;
 @dynamic duration;
+@dynamic qualityValues;
 
 -(NSTimeInterval)duration {
 	NSParameterAssert(_loaded);
@@ -87,6 +88,20 @@
 	[[[self webView] windowScriptObject] callWebScriptMethod:@"SetQuality" withArguments:[NSArray arrayWithObject:arg]];
 }
 
+-(NSUInteger)qualityValues {
+	NSParameterAssert(_loaded);
+	NSString* values = [[[self webView] windowScriptObject] callWebScriptMethod:@"QualityValues" withArguments:nil];
+	NSParameterAssert([values isKindOfClass:[NSString class]]);
+	NSUInteger qualities = 0;
+	for(NSString* value in [values componentsSeparatedByString:@","]) {
+		YTPlayerViewQualityType quality = [self _stringToQuality:value];
+		if(quality != YTPlayerViewQualityUnknown) {
+			qualities |= quality;
+		}
+	}
+	return qualities;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark PRIVATE METHODS
 
@@ -110,6 +125,8 @@
 			return @"hd1080";
 		case YTPlayerViewQualityHiRes:
 			return @"hires";
+		case YTPlayerViewQualityAuto:
+			return @"auto";
 		default:
 			return nil;
 	}
@@ -133,6 +150,9 @@
 	}
 	if([value isEqualToString:@"highres"]) {
 		return YTPlayerViewQualityHiRes;
+	}
+	if([value isEqualToString:@"auto"]) {
+		return YTPlayerViewQualityAuto;
 	}
 	return YTPlayerViewQualityUnknown;
 }
@@ -178,6 +198,9 @@
 +(BOOL)isKeyExcludedFromWebScript:(const char* )property {
 	return YES;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark JAVASCRIPT CALLBACKS
 
 -(void)_js_onYouTubePlayerAPIReady {
 	_loaded = YES;

@@ -94,7 +94,13 @@
 		if(!YT.Player || player==null) return null;
 		player.setPlaybackQuality(value);
 		return true;
-	}	
+	}
+	function QualityValues() {
+		if(!YT.Player || player==null) return null;
+		var values = player.getAvailableQualityLevels();
+		if(!values) return null;
+		return values.join(",");
+	}
 	window.onYouTubePlayerAPIReady = function() {
 		console.onYouTubePlayerAPIReady();
 	}
