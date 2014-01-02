@@ -30,6 +30,16 @@ typedef enum {
 	YTPlayerViewErrorRestricted2 = 150
 } YTPlayerViewErrorType;
 
+typedef enum {
+	YTPlayerViewQualityUnknown = -1,
+	YTPlayerViewQualitySmall = 0x01,
+	YTPlayerViewQualityMedium = 0x02,
+	YTPlayerViewQualityLarge = 0x04,
+	YTPlayerViewQualityHD720 = 0x08,
+	YTPlayerViewQualityHD1080 = 0x0F,
+	YTPlayerViewQualityHiRes = 0x10
+} YTPlayerViewQualityType;
+
 ////////////////////////////////////////////////////////////////////////////////
 // YTPlayerViewDelegate
 
@@ -47,13 +57,16 @@ typedef enum {
 
 // properties
 @property (retain) IBOutlet id<YTPlayerViewDelegate> delegate;
-@property (retain) IBOutlet WebView* webView;
-
+@property (retain) WebView* webView;
+@property (assign) NSTimeInterval currentTime;
+@property (assign) YTPlayerViewQualityType quality;
+@property (assign,readonly) NSTimeInterval duration;
+    
 // methods
 -(BOOL)load:(NSString* )videoid;
+-(BOOL)play;
+-(BOOL)pause;
 -(BOOL)playFromStart;
--(NSTimeInterval)currentTime;
-
-
+-(BOOL)seekTo:(NSTimeInterval)seekTime allowSeekAhead:(BOOL)allowSeekAhead;
 
 @end

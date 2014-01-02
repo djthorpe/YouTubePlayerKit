@@ -43,23 +43,28 @@
 		return true;
 	}
 	function PlayVideoFromStart() {
-		if(!YT.Player) {
-			return false;
-		}
-		if(player==null) {
-			return false;
-		}
+		if(!YT.Player || player==null) return false;
 		player.seekTo(0,true);
 		player.playVideo();
 		return true;
 	}
+	function PlayVideo() {
+		if(!YT.Player || player==null) return false;
+		player.playVideo();
+		return true;
+	}
+	function PauseVideo() {
+		if(!YT.Player || player==null) return false;
+		player.pauseVideo();
+		return true;
+	}
+	function SeekTo(seconds,allowSeekAhead) {
+		if(!YT.Player || player==null) return false;
+		player.seekTo(seconds,allowSeekAhead);
+		return true;
+	}
 	function CurrentTime() {
-		if(!YT.Player) {
-			return -1.0;
-		}
-		if(player==null) {
-			return -1.0;
-		}
+		if(!YT.Player || player==null) return null;
 		var currentTime = player.getCurrentTime();
 		if(currentTime) {
 			return currentTime;
@@ -67,6 +72,29 @@
 			return 0.0;
 		}
 	}
+	function Duration() {
+		if(!YT.Player || player==null) return null;
+		var duration = player.getDuration();
+		if(duration) {
+			return duration;
+		} else {
+			return null;
+		}
+	}
+	function CurrentQuality() {
+		if(!YT.Player || player==null) return null;
+		var quality = player.getPlaybackQuality();
+		if(quality) {
+			return quality;
+		} else {
+			return null;
+		}
+	}
+	function SetQuality(value) {
+		if(!YT.Player || player==null) return null;
+		player.setPlaybackQuality(value);
+		return true;
+	}	
 	window.onYouTubePlayerAPIReady = function() {
 		console.onYouTubePlayerAPIReady();
 	}

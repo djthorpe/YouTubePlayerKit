@@ -17,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1406A77C18757FF3004181BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		1406A77D1875804F004181BC /* NOTICE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.md; sourceTree = "<group>"; };
 		6E9B649618743EE30018A427 /* YouTubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E9B649718743EE30018A427 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E9B64CD18743F8A0018A427 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,6 +65,8 @@
 		14CA1D33172C4CB6000A1AF4 = {
 			isa = PBXGroup;
 			children = (
+				1406A77C18757FF3004181BC /* README.md */,
+				1406A77D1875804F004181BC /* NOTICE.md */,
 				6E9B64C918743F8A0018A427 /* src */,
 				1424D301172C4D27009C773A /* Frameworks */,
 				1424D300172C4D27009C773A /* Products */,
@@ -292,6 +296,7 @@
 				6E9B64C518743EE40018A427 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

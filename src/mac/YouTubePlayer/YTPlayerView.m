@@ -6,14 +6,11 @@
 
 @interface YTPlayerView (Private)
 -(NSString* )_embedResource;
+-(NSString* )_stringFromQuality:(YTPlayerViewQualityType)value;
+-(YTPlayerViewQualityType)_stringToQuality:(NSString* )value;
 @end
 
 @implementation YTPlayerView
-
-////////////////////////////////////////////////////////////////////////////////
-#pragma mark PROPERTIES
-
-@synthesize webView;
 
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark CONSTRUCTORS
@@ -44,12 +41,100 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+#pragma mark PROPERTIES
+    
+@synthesize webView;
+@dynamic currentTime;
+@dynamic duration;
+
+-(NSTimeInterval)duration {
+	NSParameterAssert(_loaded);
+	NSNumber* result = [[[self webView] windowScriptObject] callWebScriptMethod:@"Duration" withArguments:nil];
+	// returns 0.0 if duration is not known
+	if([result isKindOfClass:[NSNumber class]]) {
+		return [result doubleValue];
+	} else {
+		return 0.0;
+	}
+}
+
+-(NSTimeInterval)currentTime {
+	NSParameterAssert(_loaded);
+	NSNumber* result = [[[self webView] windowScriptObject] callWebScriptMethod:@"CurrentTime" withArguments:nil];
+	NSParameterAssert([result isKindOfClass:[NSNumber class]]);
+	return [result doubleValue];
+}
+    
+-(void)setCurrentTime:(NSTimeInterval)value {
+	// TODO
+	NSParameterAssert(_loaded);
+}
+
+-(YTPlayerViewQualityType)quality {
+	NSParameterAssert(_loaded);
+	NSString* result = [[[self webView] windowScriptObject] callWebScriptMethod:@"CurrentQuality" withArguments:nil];
+	if(result==nil) {
+		return YTPlayerViewQualityUnknown;
+	}
+	NSParameterAssert([result isKindOfClass:[NSString class]]);
+	return [self _stringToQuality:result];
+}
+
+-(void)setQuality:(YTPlayerViewQualityType)quality {
+	NSParameterAssert(_loaded);
+	NSString* arg = [self _stringFromQuality:quality];
+	NSParameterAssert(arg);
+	[[[self webView] windowScriptObject] callWebScriptMethod:@"SetQuality" withArguments:[NSArray arrayWithObject:arg]];
+}
+
+////////////////////////////////////////////////////////////////////////////////
 #pragma mark PRIVATE METHODS
 
 -(NSString* )_embedResource {
 	// load the HTML embed
 	NSURL* embedURL = [[NSBundle mainBundle] URLForResource:@"embed" withExtension:@"html"];
 	return [NSString stringWithContentsOfURL:embedURL encoding:NSUTF8StringEncoding error:nil];
+}
+
+-(NSString* )_stringFromQuality:(YTPlayerViewQualityType)value {
+	switch(value) {
+		case YTPlayerViewQualitySmall:
+			return @"small";
+		case YTPlayerViewQualityMedium:
+			return @"medium";
+		case YTPlayerViewQualityLarge:
+			return @"large";
+		case YTPlayerViewQualityHD720:
+			return @"hd720";
+		case YTPlayerViewQualityHD1080:
+			return @"hd1080";
+		case YTPlayerViewQualityHiRes:
+			return @"hires";
+		default:
+			return nil;
+	}
+}
+
+-(YTPlayerViewQualityType)_stringToQuality:(NSString* )value {
+	if([value isEqualToString:@"small"]) {
+		return YTPlayerViewQualitySmall;
+	}
+	if([value isEqualToString:@"medium"]) {
+		return YTPlayerViewQualityMedium;
+	}
+	if([value isEqualToString:@"large"]) {
+		return YTPlayerViewQualityLarge;
+	}
+	if([value isEqualToString:@"hd720"]) {
+		return YTPlayerViewQualityHD720;
+	}
+	if([value isEqualToString:@"hd1080"]) {
+		return YTPlayerViewQualityHD1080;
+	}
+	if([value isEqualToString:@"highres"]) {
+		return YTPlayerViewQualityHiRes;
+	}
+	return YTPlayerViewQualityUnknown;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -138,11 +223,26 @@
 	return [result boolValue];
 }
 
--(NSTimeInterval)currentTime {
+-(BOOL)play {
 	NSParameterAssert(_loaded);
-	NSNumber* result = [[[self webView] windowScriptObject] callWebScriptMethod:@"CurrentTime" withArguments:nil];
+	NSNumber* result = [[[self webView] windowScriptObject] callWebScriptMethod:@"PlayVideo" withArguments:nil];
 	NSParameterAssert([result isKindOfClass:[NSNumber class]]);
-	return [result doubleValue];
+	return [result boolValue];
+}
+
+-(BOOL)pause {
+	NSParameterAssert(_loaded);
+	NSNumber* result = [[[self webView] windowScriptObject] callWebScriptMethod:@"PauseVideo" withArguments:nil];
+	NSParameterAssert([result isKindOfClass:[NSNumber class]]);
+	return [result boolValue];
+}
+
+-(BOOL)seekTo:(NSTimeInterval)seekTime allowSeekAhead:(BOOL)allowSeekAhead {
+	NSParameterAssert(_loaded);
+	NSArray* args = [NSArray arrayWithObjects:[NSNumber numberWithDouble:seekTime],[NSNumber numberWithBool:allowSeekAhead],nil];
+	NSNumber* result = [[[self webView] windowScriptObject] callWebScriptMethod:@"SeekTo" withArguments:args];
+	NSParameterAssert([result isKindOfClass:[NSNumber class]]);
+	return [result boolValue];
 }
 
 @end
