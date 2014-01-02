@@ -1,4 +1,4 @@
 YouTubePlayerKit
 ================
 
-Example implementation of a YouTube Player for iOS
+Example implementation of a YouTube Player for Mac OS X and iOS
