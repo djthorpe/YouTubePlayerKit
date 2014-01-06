@@ -19,7 +19,7 @@
 /* Begin PBXFileReference section */
 		1406A77C18757FF3004181BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1406A77D1875804F004181BC /* NOTICE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.md; sourceTree = "<group>"; };
-		6E9B649618743EE30018A427 /* YouTubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E9B649618743EE30018A427 /* YouTubePlayer_mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer_mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E9B649718743EE30018A427 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E9B64CD18743F8A0018A427 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6E9B64CE18743F8A0018A427 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		1424D300172C4D27009C773A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6E9B649618743EE30018A427 /* YouTubePlayer.app */,
+				6E9B649618743EE30018A427 /* YouTubePlayer_mac.app */,
 				6EA9D473187AD19E007FDC01 /* YouTubePlayer_ios.app */,
 			);
 			name = Products;
@@ -180,7 +180,7 @@
 			);
 			name = YouTubePlayer_mac;
 			productName = YouTubePlayer;
-			productReference = 6E9B649618743EE30018A427 /* YouTubePlayer.app */;
+			productReference = 6E9B649618743EE30018A427 /* YouTubePlayer_mac.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6EA9D472187AD19E007FDC01 /* YouTubePlayer_ios */ = {
@@ -511,6 +511,7 @@
 				6EA9D4A3187AD19E007FDC01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

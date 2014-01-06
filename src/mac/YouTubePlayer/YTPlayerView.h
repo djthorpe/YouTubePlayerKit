@@ -36,9 +36,9 @@ typedef enum {
 	YTPlayerViewQualityMedium = 0x02,
 	YTPlayerViewQualityLarge = 0x04,
 	YTPlayerViewQualityHD720 = 0x08,
-	YTPlayerViewQualityHD1080 = 0x0F,
-	YTPlayerViewQualityHiRes = 0x10,
-	YTPlayerViewQualityAuto = 0x20
+	YTPlayerViewQualityHD1080 = 0x10,
+	YTPlayerViewQualityHiRes = 0x20,
+	YTPlayerViewQualityAuto = 0x40
 } YTPlayerViewQualityType;
 
 ////////////////////////////////////////////////////////////////////////////////

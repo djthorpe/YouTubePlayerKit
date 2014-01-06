@@ -177,7 +177,7 @@ struct quality_lookup_t {
 		// when API is ready, load in video
 		[self setPlaying:NO];
 		//[[self ibPlayer] load:@"5Jp9_sgJcN0"];
-		[[self ibPlayer] load:@"4iK0P6tb4Qs"];
+		[[self ibPlayer] load:@"_V7RwAWLNuY"];
 	} else if(state==YTPlayerViewStateLoaded) {
 		// when video is loaded, start playing
 		[self setPlaying:NO];
@@ -185,15 +185,14 @@ struct quality_lookup_t {
 	} else if(state==YTPlayerViewStatePlaying) {
 		[self setPlayingState];
 	} else if(state==YTPlayerViewStateEnded) {
-		NSLog(@"Stopped");
 		[self setPlaying:NO];
 		[self timerWithInterval:0];
 	} else if(state==YTPlayerViewStatePlaybackQualityChange) {
 		[self setQuality:[[self ibPlayer] quality]];
 	} else if(state==YTPlayerViewStatePaused) {
 		[self setPlaying:NO];
-	} else if(state==YTPlayerViewStateBuffering) {
-		// Do nothing for buffering...
+	} else if(state==YTPlayerViewStateBuffering || state==YTPlayerViewStateUnstarted) {
+		// Do nothing for buffering or unstarted...
 	} else {
 		NSLog(@"player state = %d",state);
 	}
