@@ -6,15 +6,17 @@
 	NSTimer* _timer;
 }
 
-@property (assign) IBOutlet NSWindow* window;
-@property (assign) IBOutlet YTPlayerView* player;
-@property (assign) IBOutlet NSPopUpButton* qualityMenu;
+// IBOutlets
+@property (assign) IBOutlet NSWindow* ibWindow;
+@property (assign) IBOutlet YTPlayerView* ibPlayer;
+@property (assign) IBOutlet NSMenu* ibQualityMenu;
+
+// properties
 @property (retain) NSString* time;
 @property (retain) NSString* duration;
 @property (assign) BOOL playing;
 @property (assign) double sliderValue;
 @property (assign) double volumeValue;
-@property (retain) NSArray* qualityValues;
 @property (retain) NSString* selectedQuality;
 
 // IBActions
@@ -22,5 +24,6 @@
 -(IBAction)doSeek:(id)sender;
 -(IBAction)doVolume:(id)sender;
 -(IBAction)doSetQuality:(id)sender;
+-(IBAction)doChangeQuality:(NSMenuItem* )sender;
 
 @end

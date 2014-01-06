@@ -17,15 +17,9 @@ struct quality_lookup_t {
 };
 
 @implementation AppDelegate
-@synthesize window;
-@synthesize player;
-@synthesize qualityMenu;
-@synthesize time;
-@synthesize duration;
-@synthesize playing;
-@synthesize sliderValue;
-@synthesize volumeValue;
-@synthesize selectedQuality;
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark CONSTRUCTORS
 
 -(id)init {
     self = [super init];
@@ -36,10 +30,25 @@ struct quality_lookup_t {
 }
 
 -(void)applicationDidFinishLaunching:(NSNotification* )aNotification {
-	[self setQualityValues:[NSArray arrayWithObjects:nil]];
-	[self setSelectedQuality:nil];
+	[self setSelectedQuality:@""];
 	[self setVolumeValue:50];
 }
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark PROPERTIES
+
+@synthesize ibWindow;
+@synthesize ibPlayer;
+@synthesize ibQualityMenu;
+@synthesize time;
+@synthesize duration;
+@synthesize playing;
+@synthesize sliderValue;
+@synthesize volumeValue;
+@synthesize selectedQuality;
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark PRIVATE METHODS
 
 -(void)timerWithInterval:(NSTimeInterval)interval {
 	if(_timer) {
@@ -52,21 +61,17 @@ struct quality_lookup_t {
 	}
 }
 
--(void)updateQualityWithValue:(YTPlayerViewQualityType)value {
+-(void)setQuality:(YTPlayerViewQualityType)value {
 	NSInteger index = 0;
 	struct quality_lookup_t q = quality_lookup[index];
 	while(q.name) {
 		if(value==q.value) {
-			NSMenuItem* item = [[[self qualityMenu] menu] itemWithTitle:[NSString stringWithUTF8String:q.name]];
-			if(item) {
-				[[self qualityMenu] selectItem:item];
-			}
-			
+			[self setSelectedQuality:[NSString stringWithUTF8String:q.name]];
 			return;
 		}
 		q = quality_lookup[++index];
 	}
-	[[self qualityMenu] selectItemAtIndex:-1];
+	[self setSelectedQuality:@"??"];
 }
 
 -(YTPlayerViewQualityType)qualityForString:(NSString* )value {
@@ -92,64 +97,34 @@ struct quality_lookup_t {
 	return [NSString stringWithFormat:@"%02lu:%02lu:%02lu",(NSUInteger)value,mn,sc];
 }
 
--(void)addQualityValue:(NSString* )value {
-	NSMenuItem* menuItem = [[self qualityMenu] itemWithTitle:value];
-	if(menuItem==nil) {
-		[[self qualityMenu] addItemWithTitle:value];
+-(void)addQualityValues:(NSUInteger)qualities {
+	NSParameterAssert(qualities);
+
+	// remove menu items
+	[[self ibQualityMenu] removeAllItems];
+	
+	NSInteger index = 0;
+	struct quality_lookup_t q = quality_lookup[index];
+	while(q.name) {
+		if(qualities & q.value) {
+			NSMenuItem* menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithUTF8String:q.name] action:@selector(doChangeQuality:) keyEquivalent:@""];
+			[menuItem setTag:q.value];
+			[ibQualityMenu addItem:menuItem];
+		}
+		q = quality_lookup[++index];
 	}
 }
 
 -(void)setPlayingState {
 	[self setPlaying:YES];
 	[self timerWithInterval:0.5];
-	NSUInteger qualities = [[self player] qualityValues];
-	if(qualities) {
-		NSInteger index = 0;
-		struct quality_lookup_t q = quality_lookup[index];
-		while(q.name) {
-			if(qualities & q.value) {
-				[self addQualityValue:[NSString stringWithUTF8String:q.name]];
-			}
-			q = quality_lookup[++index];
-		}
-	}
-	[self setVolumeValue:[[self player] volume]];
-}
-
--(void)player:(YTPlayerView* )sender state:(YTPlayerViewStateType)state {
-	if(state==YTPlayerViewStateAPIReady) {
-		// when API is ready, load in video
-		//[player load:@"eCySCCIZPWA"];
-		[self setPlaying:NO];
-		[[self player] load:@"5Jp9_sgJcN0"];
-	} else if(state==YTPlayerViewStateLoaded) {
-		// when video is loaded, start playing
-		[self setPlaying:NO];
-		[[self player] playFromStart];
-	} else if(state==YTPlayerViewStatePlaying) {
-		[self setPlayingState];
-	} else if(state==YTPlayerViewStateEnded) {
-		NSLog(@"Stopped");
-		[self setPlaying:NO];
-		[self timerWithInterval:0];
-	} else if(state==YTPlayerViewStatePlaybackQualityChange) {
-		[self updateQualityWithValue:[[self player] quality]];
-	} else if(state==YTPlayerViewStatePaused) {
-		[self setPlaying:NO];
-	} else if(state==YTPlayerViewStateBuffering) {
-		// Do nothing for buffering...
-	} else {
-		NSLog(@"player state = %d",state);
-	}
-}
-
--(void)player:(YTPlayerView* )sender error:(YTPlayerViewErrorType)error {
-	NSLog(@"Player error = %d",error);
+	[self addQualityValues:[[self ibPlayer] qualityValues]];
+	[self setVolumeValue:[[self ibPlayer] volume]];
 }
 
 -(void)doTimerFired:(id)sender {
-	NSTimeInterval currentTime = [[self player] currentTime];
-	NSTimeInterval dur = [[self player] duration];
+	NSTimeInterval currentTime = [[self ibPlayer] currentTime];
+	NSTimeInterval dur = [[self ibPlayer] duration];
 	[self setTime:[self intervalToString:currentTime]];
 	if(currentTime < dur && currentTime > 0.0) {
 		[self setDuration:[self intervalToString:(dur-currentTime)]];
@@ -161,31 +136,71 @@ struct quality_lookup_t {
 }
 
 -(IBAction)doSeek:(id)sender {
-	NSTimeInterval dur = [[self player] duration];
+	NSTimeInterval dur = [[self ibPlayer] duration];
 	if(dur > 0.0) {
 		NSTimeInterval seekTime = ([self sliderValue] * dur) / 100.0;
-		[[self player] seekTo:seekTime allowSeekAhead:YES];
+		[[self ibPlayer] seekTo:seekTime allowSeekAhead:YES];
 	}
 }
 
 -(IBAction)doVolume:(id)sender {
-	[[self player] setVolume:[self volumeValue]];
+	[[self ibPlayer] setVolume:[self volumeValue]];
 }
 
 -(IBAction)doPlayPause:(id)sender {
 	if([self playing]) {
-		[[self player] pause];
+		[[self ibPlayer] pause];
 	} else {
-		[[self player] play];
+		[[self ibPlayer] play];
 	}
 }
 
--(IBAction)doSetQuality:(NSPopUpButton* )sender {
-	NSParameterAssert([sender isKindOfClass:[NSPopUpButton class]]);
-	YTPlayerViewQualityType quality = [self qualityForString:[[sender selectedItem] title]];
-	if(quality != YTPlayerViewQualityUnknown) {
-		[[self player] setQuality:quality];
+-(IBAction)doSetQuality:(id)sender {
+	NSParameterAssert([sender isKindOfClass:[NSButton class]]);
+	NSButton* btn = (NSButton* )sender;
+	NSRect frame = [btn frame];
+	NSPoint menuOrigin = [[btn superview] convertPoint:NSMakePoint(frame.origin.x, frame.origin.y+frame.size.height+40) toView:nil];
+	NSEvent* event = [NSEvent mouseEventWithType:NSLeftMouseDown location:menuOrigin modifierFlags:NSLeftMouseDownMask timestamp:0 windowNumber:[ibWindow windowNumber] context:[ibWindow graphicsContext] eventNumber:0 clickCount:1 pressure:1];
+	[NSMenu popUpContextMenu:[self ibQualityMenu] withEvent:event forView:btn];
+}
+
+-(IBAction)doChangeQuality:(NSMenuItem* )sender {
+	NSParameterAssert([sender isKindOfClass:[NSMenuItem class]]);
+	[[self ibPlayer] setQuality:(YTPlayerViewQualityType)[sender tag]];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark YTPLAYERVIEW DELEGATE
+
+-(void)player:(YTPlayerView* )sender state:(YTPlayerViewStateType)state {
+	if(state==YTPlayerViewStateAPIReady) {
+		// when API is ready, load in video
+		//[player load:@"eCySCCIZPWA"];
+		[self setPlaying:NO];
+		[[self ibPlayer] load:@"5Jp9_sgJcN0"];
+	} else if(state==YTPlayerViewStateLoaded) {
+		// when video is loaded, start playing
+		[self setPlaying:NO];
+		[[self ibPlayer] playFromStart];
+	} else if(state==YTPlayerViewStatePlaying) {
+		[self setPlayingState];
+	} else if(state==YTPlayerViewStateEnded) {
+		NSLog(@"Stopped");
+		[self setPlaying:NO];
+		[self timerWithInterval:0];
+	} else if(state==YTPlayerViewStatePlaybackQualityChange) {
+		[self setQuality:[[self ibPlayer] quality]];
+	} else if(state==YTPlayerViewStatePaused) {
+		[self setPlaying:NO];
+	} else if(state==YTPlayerViewStateBuffering) {
+		// Do nothing for buffering...
+	} else {
+		NSLog(@"player state = %d",state);
 	}
+}
+
+-(void)player:(YTPlayerView* )sender error:(YTPlayerViewErrorType)error {
+	NSLog(@"Player error = %d",error);
 }
 
 @end

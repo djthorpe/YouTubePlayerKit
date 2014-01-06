@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A3017" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
@@ -629,9 +629,9 @@
         </menu>
         <customObject id="Pmo-K5-pzI" customClass="AppDelegate">
             <connections>
-                <outlet property="player" destination="mX7-8x-9H8" id="T8D-Wz-FnQ"/>
-                <outlet property="qualityMenu" destination="j6t-WU-DAg" id="5DW-7F-0FS"/>
-                <outlet property="window" destination="iBK-yV-Qms" id="y4P-vD-Ufz"/>
+                <outlet property="ibPlayer" destination="mX7-8x-9H8" id="uiX-Ru-8HN"/>
+                <outlet property="ibQualityMenu" destination="FcF-jU-rJM" id="Ss2-AB-Md1"/>
+                <outlet property="ibWindow" destination="iBK-yV-Qms" id="vYG-F3-HCg"/>
             </connections>
         </customObject>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="iBK-yV-Qms">
@@ -648,8 +648,8 @@
                         <rect key="frame" x="20" y="19" width="63" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16" id="4mz-aE-R9E"/>
-                            <constraint firstAttribute="width" constant="63" id="GMj-Br-cMa"/>
+                            <constraint firstAttribute="width" constant="63" id="6dK-8s-dAj"/>
+                            <constraint firstAttribute="height" constant="16" id="EHc-NY-zHs"/>
                         </constraints>
                         <buttonCell key="cell" type="inline" title="Time" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="NyZ-s7-nma">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -664,8 +664,8 @@
                         <rect key="frame" x="448" y="19" width="63" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16" id="Ig5-rX-eZq"/>
-                            <constraint firstAttribute="width" constant="63" id="KCJ-p0-omd"/>
+                            <constraint firstAttribute="height" constant="16" id="F32-eg-BoV"/>
+                            <constraint firstAttribute="width" constant="63" id="J3z-m5-bG5"/>
                         </constraints>
                         <buttonCell key="cell" type="inline" title="Duration" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="etm-O5-E1j">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -673,6 +673,22 @@
                         </buttonCell>
                         <connections>
                             <binding destination="Pmo-K5-pzI" name="title" keyPath="duration" id="ZeT-CH-y8m"/>
+                        </connections>
+                    </button>
+                    <button identifier="duration" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZBg-mh-Tj0" userLabel="Duration">
+                        <rect key="frame" x="519" y="19" width="54" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="fvd-cY-SZr"/>
+                            <constraint firstAttribute="width" constant="54" id="gpz-zy-Gid"/>
+                        </constraints>
+                        <buttonCell key="cell" type="inline" title="Quality" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="m2d-cf-Nda">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystemBold"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="doSetQuality:" target="Pmo-K5-pzI" id="gDp-ad-23j"/>
+                            <binding destination="Pmo-K5-pzI" name="title" keyPath="selectedQuality" id="t9l-mP-iFV"/>
                         </connections>
                     </button>
                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V4P-fg-y93" userLabel="Slider">
@@ -691,36 +707,21 @@
                             <outlet property="delegate" destination="Pmo-K5-pzI" id="bum-80-DhE"/>
                         </connections>
                     </customView>
-                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j6t-WU-DAg">
-                        <rect key="frame" x="519" y="18" width="67" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="67" id="Xr4-vI-ZvX"/>
-                        </constraints>
-                        <popUpButtonCell key="cell" type="roundRect" title="Qual" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="88I-FR-H0Q">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="cellTitle"/>
-                            <menu key="menu" title="OtherViews" id="Gyl-Qs-lRA">
-                                <items>
-                                    <menuItem title="Qual" state="on" hidden="YES" id="kB7-UR-yz5"/>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                        <connections>
-                            <action selector="doSetQuality:" target="Pmo-K5-pzI" id="FdT-hj-Vzh"/>
-                        </connections>
-                    </popUpButton>
                     <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y7V-kt-QwC">
                         <rect key="frame" x="592" y="13" width="28" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="iVE-7N-CG7"/>
+                            <constraint firstAttribute="height" constant="24" id="uPH-B2-gOh"/>
+                        </constraints>
                         <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="circular" id="fum-ta-Q26"/>
                         <connections>
                             <action selector="doVolume:" target="Pmo-K5-pzI" id="W7P-iU-kzy"/>
                             <binding destination="Pmo-K5-pzI" name="value" keyPath="volumeValue" id="l7k-VQ-qmW"/>
                         </connections>
                     </slider>
-                    <box autoresizesSubviews="NO" horizontalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nar-wL-rYa">
-                        <rect key="frame" x="603" y="39" width="5" height="7"/>
+                    <box autoresizesSubviews="NO" horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nar-wL-rYa">
+                        <rect key="frame" x="603" y="39" width="4" height="7"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -728,30 +729,44 @@
                     </box>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="nar-wL-rYa" secondAttribute="trailing" constant="34" id="5UL-gq-6ia"/>
-                    <constraint firstAttribute="bottom" secondItem="zCV-c2-6zi" secondAttribute="bottom" constant="20" symbolic="YES" id="8nf-pD-jaQ"/>
-                    <constraint firstAttribute="trailing" secondItem="Y7V-kt-QwC" secondAttribute="trailing" constant="22" id="Dea-hl-PQF"/>
-                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="EoP-0B-QFe"/>
-                    <constraint firstItem="nar-wL-rYa" firstAttribute="top" secondItem="gjG-xx-85g" secondAttribute="top" constant="354" id="NXS-Fo-BY0"/>
-                    <constraint firstItem="j6t-WU-DAg" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="8" symbolic="YES" id="QfK-II-qLO"/>
-                    <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="Soh-sJ-J8I"/>
-                    <constraint firstItem="mX7-8x-9H8" firstAttribute="top" secondItem="gjG-xx-85g" secondAttribute="top" id="T4V-fx-PEy"/>
-                    <constraint firstItem="j6t-WU-DAg" firstAttribute="baseline" secondItem="hfa-7Y-wuJ" secondAttribute="baseline" id="ToS-N5-267"/>
-                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="baseline" secondItem="zCV-c2-6zi" secondAttribute="baseline" id="Uwa-do-hE4"/>
-                    <constraint firstItem="j6t-WU-DAg" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="8" id="VS1-Re-7wN"/>
-                    <constraint firstItem="j6t-WU-DAg" firstAttribute="centerY" secondItem="Y7V-kt-QwC" secondAttribute="centerY" id="Xn7-5q-XxW"/>
-                    <constraint firstItem="Y7V-kt-QwC" firstAttribute="leading" secondItem="j6t-WU-DAg" secondAttribute="trailing" constant="8" id="ZYu-3n-LGE"/>
-                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="enN-Gn-HuE"/>
-                    <constraint firstItem="zCV-c2-6zi" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" constant="20" id="g5S-KK-vbW"/>
-                    <constraint firstItem="Y7V-kt-QwC" firstAttribute="leading" secondItem="j6t-WU-DAg" secondAttribute="trailing" constant="8" id="jlp-Eb-qkB"/>
-                    <constraint firstItem="mX7-8x-9H8" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" id="kiu-fR-XM9"/>
-                    <constraint firstItem="j6t-WU-DAg" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="8" id="lb1-QW-zAe"/>
-                    <constraint firstAttribute="trailing" secondItem="mX7-8x-9H8" secondAttribute="trailing" id="neQ-b5-pXR"/>
-                    <constraint firstItem="V4P-fg-y93" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="8" symbolic="YES" id="oVm-uJ-Fi9"/>
-                    <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="tmJ-bC-2Ow"/>
-                    <constraint firstAttribute="bottom" secondItem="nar-wL-rYa" secondAttribute="bottom" constant="39" id="yEZ-cI-p7S"/>
+                    <constraint firstItem="zCV-c2-6zi" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" constant="20" id="06Q-vF-01Q"/>
+                    <constraint firstAttribute="bottom" secondItem="hfa-7Y-wuJ" secondAttribute="bottom" constant="20" id="1WQ-Gg-TH6"/>
+                    <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="1WY-Ay-IoT"/>
+                    <constraint firstItem="Y7V-kt-QwC" firstAttribute="leading" secondItem="ZBg-mh-Tj0" secondAttribute="trailing" constant="21" id="35R-fY-UPT"/>
+                    <constraint firstAttribute="bottom" secondItem="zCV-c2-6zi" secondAttribute="bottom" constant="20" id="5ds-op-uqw"/>
+                    <constraint firstItem="ZBg-mh-Tj0" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="8" id="85A-LM-1lc"/>
+                    <constraint firstAttribute="bottom" secondItem="V4P-fg-y93" secondAttribute="bottom" constant="20" id="BCL-NM-uqI"/>
+                    <constraint firstAttribute="trailing" secondItem="Y7V-kt-QwC" secondAttribute="trailing" constant="22" id="DR3-p9-02g"/>
+                    <constraint firstItem="mX7-8x-9H8" firstAttribute="top" secondItem="gjG-xx-85g" secondAttribute="top" id="FST-e4-2Wa"/>
+                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="FxG-li-r8A"/>
+                    <constraint firstAttribute="bottom" secondItem="Y7V-kt-QwC" secondAttribute="bottom" constant="16" id="GM3-1h-lWV"/>
+                    <constraint firstItem="Y7V-kt-QwC" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="5" id="IiE-VG-rTH"/>
+                    <constraint firstAttribute="trailing" secondItem="mX7-8x-9H8" secondAttribute="trailing" id="Jgv-9i-Mqd"/>
+                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="9" id="S8y-cb-xWN"/>
+                    <constraint firstItem="zCV-c2-6zi" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="9" id="Sn1-B4-PzM"/>
+                    <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="UNt-rs-ute"/>
+                    <constraint firstItem="Y7V-kt-QwC" firstAttribute="leading" secondItem="ZBg-mh-Tj0" secondAttribute="trailing" constant="21" id="Vf6-rM-n3U"/>
+                    <constraint firstItem="mX7-8x-9H8" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" id="Yao-PX-ouD"/>
+                    <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="cjc-aD-1rG"/>
+                    <constraint firstItem="ZBg-mh-Tj0" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="9" id="flF-uZ-P8j"/>
+                    <constraint firstItem="V4P-fg-y93" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="8" id="hai-6n-fDm"/>
+                    <constraint firstItem="ZBg-mh-Tj0" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="8" id="ioA-Gg-QiN"/>
+                    <constraint firstAttribute="bottom" secondItem="ZBg-mh-Tj0" secondAttribute="bottom" constant="20" id="phe-mE-Auf"/>
                 </constraints>
             </view>
         </window>
+        <menu id="FcF-jU-rJM" userLabel="Quality Menu">
+            <items>
+                <menuItem title="Item 1" id="pRU-bw-ldP">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Item 2" id="fT3-R4-AhC">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Item 3" id="8No-Xu-p5T">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+        </menu>
     </objects>
 </document>
