@@ -720,7 +720,7 @@
                             <binding destination="Pmo-K5-pzI" name="value" keyPath="volumeValue" id="l7k-VQ-qmW"/>
                         </connections>
                     </slider>
-                    <box autoresizesSubviews="NO" horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nar-wL-rYa">
+                    <box autoresizesSubviews="NO" horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nar-wL-rYa">
                         <rect key="frame" x="603" y="39" width="4" height="7"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -732,6 +732,7 @@
                     <constraint firstItem="zCV-c2-6zi" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" constant="20" id="06Q-vF-01Q"/>
                     <constraint firstAttribute="bottom" secondItem="hfa-7Y-wuJ" secondAttribute="bottom" constant="20" id="1WQ-Gg-TH6"/>
                     <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="1WY-Ay-IoT"/>
+                    <constraint firstAttribute="bottom" secondItem="nar-wL-rYa" secondAttribute="bottom" constant="39" id="2hN-qh-f3v"/>
                     <constraint firstItem="Y7V-kt-QwC" firstAttribute="leading" secondItem="ZBg-mh-Tj0" secondAttribute="trailing" constant="21" id="35R-fY-UPT"/>
                     <constraint firstAttribute="bottom" secondItem="zCV-c2-6zi" secondAttribute="bottom" constant="20" id="5ds-op-uqw"/>
                     <constraint firstItem="ZBg-mh-Tj0" firstAttribute="leading" secondItem="hfa-7Y-wuJ" secondAttribute="trailing" constant="8" id="85A-LM-1lc"/>
@@ -747,6 +748,7 @@
                     <constraint firstItem="hfa-7Y-wuJ" firstAttribute="leading" secondItem="V4P-fg-y93" secondAttribute="trailing" constant="8" id="UNt-rs-ute"/>
                     <constraint firstItem="Y7V-kt-QwC" firstAttribute="leading" secondItem="ZBg-mh-Tj0" secondAttribute="trailing" constant="21" id="Vf6-rM-n3U"/>
                     <constraint firstItem="mX7-8x-9H8" firstAttribute="leading" secondItem="gjG-xx-85g" secondAttribute="leading" id="Yao-PX-ouD"/>
+                    <constraint firstAttribute="trailing" secondItem="nar-wL-rYa" secondAttribute="trailing" constant="35" id="ai6-tV-RCP"/>
                     <constraint firstItem="V4P-fg-y93" firstAttribute="leading" secondItem="zCV-c2-6zi" secondAttribute="trailing" constant="8" id="cjc-aD-1rG"/>
                     <constraint firstItem="ZBg-mh-Tj0" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="9" id="flF-uZ-P8j"/>
                     <constraint firstItem="V4P-fg-y93" firstAttribute="top" secondItem="mX7-8x-9H8" secondAttribute="bottom" constant="8" id="hai-6n-fDm"/>
@@ -757,13 +759,13 @@
         </window>
         <menu id="FcF-jU-rJM" userLabel="Quality Menu">
             <items>
-                <menuItem title="Item 1" id="pRU-bw-ldP">
+                <menuItem title="Item" id="T14-db-IkA">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Item 2" id="fT3-R4-AhC">
+                <menuItem title="Item" id="Ew8-GT-p99">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Item 3" id="8No-Xu-p5T">
+                <menuItem title="Item" id="Dmq-A3-Yym">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
             </items>
