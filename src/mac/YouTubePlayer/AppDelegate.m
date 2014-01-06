@@ -175,9 +175,9 @@ struct quality_lookup_t {
 -(void)player:(YTPlayerView* )sender state:(YTPlayerViewStateType)state {
 	if(state==YTPlayerViewStateAPIReady) {
 		// when API is ready, load in video
-		//[player load:@"eCySCCIZPWA"];
 		[self setPlaying:NO];
-		[[self ibPlayer] load:@"5Jp9_sgJcN0"];
+		//[[self ibPlayer] load:@"5Jp9_sgJcN0"];
+		[[self ibPlayer] load:@"4iK0P6tb4Qs"];
 	} else if(state==YTPlayerViewStateLoaded) {
 		// when video is loaded, start playing
 		[self setPlaying:NO];
@@ -199,8 +199,8 @@ struct quality_lookup_t {
 	}
 }
 
--(void)player:(YTPlayerView* )sender error:(YTPlayerViewErrorType)error {
-	NSLog(@"Player error = %d",error);
+-(void)player:(YTPlayerView* )sender error:(NSError* )error {
+	NSLog(@"Player error = %@",error);
 }
 
 @end

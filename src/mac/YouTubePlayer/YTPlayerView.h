@@ -42,11 +42,16 @@ typedef enum {
 } YTPlayerViewQualityType;
 
 ////////////////////////////////////////////////////////////////////////////////
+// Externs
+
+extern NSString* YTPlayerViewErrorDomain;
+
+////////////////////////////////////////////////////////////////////////////////
 // YTPlayerViewDelegate
 
 @protocol YTPlayerViewDelegate <NSObject>
 -(void)player:(YTPlayerView* )playerView state:(YTPlayerViewStateType)state;
--(void)player:(YTPlayerView* )playerView error:(YTPlayerViewErrorType)error;
+-(void)player:(YTPlayerView* )playerView error:(NSError* )error;
 @end
 
 ////////////////////////////////////////////////////////////////////////////////

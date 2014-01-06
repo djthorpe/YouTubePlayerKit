@@ -10,6 +10,8 @@
 -(YTPlayerViewQualityType)_stringToQuality:(NSString* )value;
 @end
 
+NSString* YTPlayerViewErrorDomain = @"YTPlayerViewError";
+
 @implementation YTPlayerView
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -170,6 +172,22 @@
 	return YTPlayerViewQualityUnknown;
 }
 
+-(NSString* )_errorStringFromCode:(YTPlayerViewErrorType)code {
+	switch(code) {
+		case YTPlayerViewErrorInvalidParameters:
+			return @"Invalid Parameters";
+		case YTPlayerViewErrorHTML5Error:
+			return @"HTML5 Error";
+		case YTPlayerViewErrorNotFound:
+			return @"Not Found";
+		case YTPlayerViewErrorRestricted:
+		case YTPlayerViewErrorRestricted2:
+			return @"Embedding disabled";
+		default:
+			return @"Unknown error";
+	}
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark WEBVIEW DELEGATES
 
@@ -212,6 +230,11 @@
 	return YES;
 }
 
+-(WebView *)webView:(WebView *)sender createWebViewWithRequest:(NSURLRequest* )request {
+	NSLog(@"req = %@",request);
+	return nil;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark JAVASCRIPT CALLBACKS
 
@@ -234,7 +257,10 @@
 }
 
 -(void)_js_onError:(NSNumber* )data {
-	[[self delegate] player:self error:(YTPlayerViewErrorType)[data integerValue]];
+	NSDictionary* dict = @{
+		NSLocalizedDescriptionKey: [self _errorStringFromCode:(YTPlayerViewErrorType)[data integerValue]],
+	};
+	[[self delegate] player:self error:[NSError errorWithDomain:YTPlayerViewErrorDomain code:[data integerValue] userInfo:dict]];
 }
 
 -(void)_js_log :(NSString* )theMessage {
