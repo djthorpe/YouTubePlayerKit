@@ -1,6 +1,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "YTPlayerView.h"
+#import "DataSource.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, YTPlayerViewDelegate> {
 	NSTimer* _timer;
@@ -10,6 +11,7 @@
 @property (assign) IBOutlet NSWindow* ibWindow;
 @property (assign) IBOutlet YTPlayerView* ibPlayer;
 @property (assign) IBOutlet NSMenu* ibQualityMenu;
+@property (assign) IBOutlet DataSource* ibDataSource;
 
 // properties
 @property (retain) NSString* time;

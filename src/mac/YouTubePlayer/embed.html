@@ -22,24 +22,28 @@
 		'showinfo': 0
 	};
 	function RequestVideoWithID(videoid) {
-		var container = document.getElementById('container');
-		var width_px = window.document.body.scrollWidth;
-		var height_px = window.document.body.scrollHeight;
 		if(!YT.Player) {
 			return false;
 		}
-		player = new YT.Player(container,{
-			videoId: videoid,
-			width: width_px,
-			height: height_px,
-			playerVars: parameters,
-			events: {
-				onReady: onReady,
-				onStateChange: onStateChange,
-				onPlaybackQualityChange: onPlaybackQualityChange,
-				onError: onError
-			}
-		});
+		if(player) {
+			player.loadVideoById(videoid,0);
+		} else {
+			var container = document.getElementById('container');
+			var width_px = window.document.body.scrollWidth;
+			var height_px = window.document.body.scrollHeight;
+			player = new YT.Player(container,{
+				videoId: videoid,
+				width: width_px,
+				height: height_px,
+				playerVars: parameters,
+				events: {
+					onReady: onReady,
+					onStateChange: onStateChange,
+					onPlaybackQualityChange: onPlaybackQualityChange,
+					onError: onError
+				}
+			});
+		}
 		return true;
 	}
 	function PlayVideoFromStart() {

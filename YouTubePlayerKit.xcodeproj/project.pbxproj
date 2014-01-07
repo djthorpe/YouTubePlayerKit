@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E11B4B7187B006B0008934E /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E11B4B6187B006B0008934E /* DataSource.m */; };
+		6E11B4C0187B4A2B0008934E /* GTL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E11B4BF187B4A230008934E /* GTL.framework */; };
+		6E36DB08187AF55000533597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA9D4AB187AD23B007FDC01 /* AppDelegate.m */; };
+		6E36DB09187AF55300533597 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA9D4B5187AD23B007FDC01 /* ViewController.m */; };
+		6E36DB0A187AF57900533597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA9D4B3187AD23B007FDC01 /* main.m */; };
+		6E36DB0B187AF5B400533597 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA9D4AC187AD23B007FDC01 /* Main_iPad.storyboard */; };
+		6E36DB0C187AF5B800533597 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA9D4AE187AD23B007FDC01 /* Main_iPhone.storyboard */; };
+		6E36DB0F187AF65500533597 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E36DB0E187AF65500533597 /* YTPlayerView.m */; };
 		6E9B649818743EE30018A427 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9B649718743EE30018A427 /* Cocoa.framework */; };
 		6E9B64D21874413A0018A427 /* YouTubePlayerMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9B64D11874413A0018A427 /* YouTubePlayerMain.xib */; };
 		6E9B64D3187441B70018A427 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B64CE18743F8A0018A427 /* AppDelegate.m */; };
@@ -19,6 +27,11 @@
 /* Begin PBXFileReference section */
 		1406A77C18757FF3004181BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1406A77D1875804F004181BC /* NOTICE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.md; sourceTree = "<group>"; };
+		6E11B4B5187B006B0008934E /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		6E11B4B6187B006B0008934E /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		6E11B4BF187B4A230008934E /* GTL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTL.framework; sourceTree = "<group>"; };
+		6E36DB0D187AF65500533597 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
+		6E36DB0E187AF65500533597 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
 		6E9B649618743EE30018A427 /* YouTubePlayer_mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer_mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E9B649718743EE30018A427 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E9B64CD18743F8A0018A427 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -48,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E9B64DB187449030018A427 /* WebKit.framework in Frameworks */,
+				6E11B4C0187B4A2B0008934E /* GTL.framework in Frameworks */,
 				6E9B649818743EE30018A427 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,9 +100,26 @@
 				1406A77C18757FF3004181BC /* README.md */,
 				1406A77D1875804F004181BC /* NOTICE.md */,
 				6E9B64C918743F8A0018A427 /* src */,
+				6E11B4B9187B12AC0008934E /* third_party */,
 				1424D301172C4D27009C773A /* Frameworks */,
 				1424D300172C4D27009C773A /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		6E11B4B9187B12AC0008934E /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				6E11B4BE187B4A230008934E /* gtl_mac_debug */,
+			);
+			path = third_party;
+			sourceTree = "<group>";
+		};
+		6E11B4BE187B4A230008934E /* gtl_mac_debug */ = {
+			isa = PBXGroup;
+			children = (
+				6E11B4BF187B4A230008934E /* GTL.framework */,
+			);
+			path = gtl_mac_debug;
 			sourceTree = "<group>";
 		};
 		6E9B64C918743F8A0018A427 /* src */ = {
@@ -120,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				6E9B64D0187440390018A427 /* YouTubePlayer-Info.plist */,
+				6E11B4B5187B006B0008934E /* DataSource.h */,
+				6E11B4B6187B006B0008934E /* DataSource.m */,
 				6E9B64CD18743F8A0018A427 /* AppDelegate.h */,
 				6E9B64CE18743F8A0018A427 /* AppDelegate.m */,
 				6E9B64CF18743F8A0018A427 /* main.m */,
@@ -154,6 +187,8 @@
 				6EA9D4AA187AD23B007FDC01 /* AppDelegate.h */,
 				6EA9D4AB187AD23B007FDC01 /* AppDelegate.m */,
 				6EA9D4AC187AD23B007FDC01 /* Main_iPad.storyboard */,
+				6E36DB0D187AF65500533597 /* YTPlayerView.h */,
+				6E36DB0E187AF65500533597 /* YTPlayerView.m */,
 				6EA9D4AE187AD23B007FDC01 /* Main_iPhone.storyboard */,
 				6EA9D4B2187AD23B007FDC01 /* Images.xcassets */,
 				6EA9D4B3187AD23B007FDC01 /* main.m */,
@@ -246,6 +281,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E36DB0C187AF5B800533597 /* Main_iPhone.storyboard in Resources */,
+				6E36DB0B187AF5B400533597 /* Main_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +295,7 @@
 			files = (
 				6E9B64D4187441BA0018A427 /* main.m in Sources */,
 				6E9B64D3187441B70018A427 /* AppDelegate.m in Sources */,
+				6E11B4B7187B006B0008934E /* DataSource.m in Sources */,
 				6E9B64D9187442550018A427 /* YTPlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +304,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E36DB09187AF55300533597 /* ViewController.m in Sources */,
+				6E36DB0A187AF57900533597 /* main.m in Sources */,
+				6E36DB0F187AF65500533597 /* YTPlayerView.m in Sources */,
+				6E36DB08187AF55000533597 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +365,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Volumes/Drobo/Projects/YouTubePlayerKit/third_party/gtl_mac,
+					/Volumes/Drobo/Projects/YouTubePlayerKit/third_party/gtl_mac_debug,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -367,6 +414,11 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Volumes/Drobo/Projects/YouTubePlayerKit/third_party/gtl_mac,
+					/Volumes/Drobo/Projects/YouTubePlayerKit/third_party/gtl_mac_debug,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -414,7 +466,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "YouTubePlayer_ios/YouTubePlayer_ios-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -426,7 +477,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "YouTubePlayer_ios/YouTubePlayer_ios-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/src/ios/YouTubePlayer/YouTubePlayer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -465,14 +516,13 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "YouTubePlayer_ios/YouTubePlayer_ios-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "YouTubePlayer_ios/YouTubePlayer_ios-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/src/ios/YouTubePlayer/YouTubePlayer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

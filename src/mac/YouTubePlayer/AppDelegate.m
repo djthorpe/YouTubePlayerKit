@@ -32,6 +32,9 @@ struct quality_lookup_t {
 -(void)applicationDidFinishLaunching:(NSNotification* )aNotification {
 	[self setSelectedQuality:@""];
 	[self setVolumeValue:50];
+	
+	// listen for new video notification
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doLoadVideo:) name:YTPlayerSelectedVideoNotification object:nil];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -167,6 +170,12 @@ struct quality_lookup_t {
 -(IBAction)doChangeQuality:(NSMenuItem* )sender {
 	NSParameterAssert([sender isKindOfClass:[NSMenuItem class]]);
 	[[self ibPlayer] setQuality:(YTPlayerViewQualityType)[sender tag]];
+}
+
+-(void)doLoadVideo:(NSNotification* )aNotification {
+	NSDictionary* video = [aNotification object];
+	NSLog(@"load %@",video);
+	[[self ibPlayer] load:[video objectForKey:@"id"]];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
