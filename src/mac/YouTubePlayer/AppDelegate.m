@@ -38,10 +38,6 @@ struct quality_lookup_t {
 	// listen for new video notification
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doLoadVideo:) name:YTPlayerSelectedVideoNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doLoadPlaylist:) name:YTPlayerPlaylistChangedNotification object:nil];
-	
-	// add full screen option
-	[[NSApplication sharedApplication] setPresentationOptions:NSFullScreenWindowMask];
-	
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -153,7 +149,9 @@ struct quality_lookup_t {
 	YTVideo* video = [aNotification object];
 	NSParameterAssert([video isKindOfClass:[YTVideo class]]);
 	[[self ibPlayer] load:[video key]];
-	[self setWindowTitle:[video videoTitle]];
+	
+	NSString* windowTitle = [NSString stringWithFormat:@"%@ [%@]",[video videoTitle],[video channelTitle]];
+	[self setWindowTitle:windowTitle];
 }
 
 -(void)doLoadPlaylist:(NSNotification* )aNotification {
