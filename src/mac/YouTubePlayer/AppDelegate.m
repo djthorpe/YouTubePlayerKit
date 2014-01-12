@@ -208,8 +208,6 @@ struct quality_lookup_t {
 		[self setPlaying:NO];
 	} else if(state==YTPlayerViewStateBuffering || state==YTPlayerViewStateUnstarted) {
 		// Do nothing for buffering or unstarted...
-	} else {
-		NSLog(@"player state = %d",state);
 	}
 }
 
