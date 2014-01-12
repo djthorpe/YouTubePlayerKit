@@ -263,6 +263,10 @@ decisionListener:(id <WebPolicyDecisionListener>)listener {
 	[listener ignore]; // ignore webview default implementation...
 }
 
+-(NSArray *)webView:(WebView *)sender contextMenuItemsForElement:(NSDictionary *)element defaultMenuItems:(NSArray *)defaultMenuItems {
+	// disable right click
+    return nil;
+}
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark JAVASCRIPT CALLBACKS
 

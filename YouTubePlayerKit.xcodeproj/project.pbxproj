@@ -56,7 +56,6 @@
 		6EA9D4AB187AD23B007FDC01 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6EA9D4AD187AD23B007FDC01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		6EA9D4AF187AD23B007FDC01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		6EA9D4B2187AD23B007FDC01 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6EA9D4B3187AD23B007FDC01 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6EA9D4B4187AD23B007FDC01 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6EA9D4B5187AD23B007FDC01 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		6EB2A88D1882EA6600C2A160 /* YouTube-icon-128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-128x128.png"; sourceTree = "<group>"; };
 		6EB2A88E1882EA6600C2A160 /* YouTube-icon-256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-256x256.png"; sourceTree = "<group>"; };
 		6EB2A88F1882EA6600C2A160 /* YouTube-icon-1024x721.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-1024x721.png"; sourceTree = "<group>"; };
+		6EB2A8961882EC8F00C2A160 /* build-release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-release.sh"; sourceTree = "<group>"; };
 		6EF14A4B1882D6D500E81854 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,7 +199,6 @@
 				6E36DB0D187AF65500533597 /* YTPlayerView.h */,
 				6E36DB0E187AF65500533597 /* YTPlayerView.m */,
 				6EA9D4AE187AD23B007FDC01 /* Main_iPhone.storyboard */,
-				6EA9D4B2187AD23B007FDC01 /* Images.xcassets */,
 				6EA9D4B3187AD23B007FDC01 /* main.m */,
 				6EA9D4B4187AD23B007FDC01 /* ViewController.h */,
 				6EA9D4B5187AD23B007FDC01 /* ViewController.m */,
@@ -210,6 +209,7 @@
 		6EF14A4A1882D6D500E81854 /* etc */ = {
 			isa = PBXGroup;
 			children = (
+				6EB2A8961882EC8F00C2A160 /* build-release.sh */,
 				6EB2A88A1882EA6600C2A160 /* YouTube-icon-16x16.png */,
 				6EB2A88B1882EA6600C2A160 /* YouTube-icon-32x32.png */,
 				6EB2A88C1882EA6600C2A160 /* YouTube-icon-64x64.png */,
