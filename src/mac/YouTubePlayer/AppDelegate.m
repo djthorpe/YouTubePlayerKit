@@ -229,4 +229,8 @@ struct quality_lookup_t {
 	[self displayErrorSheetWithMessage:errorMessage];
 }
 
+-(void)player:(YTPlayerView* )sender clickURL:(NSURL *)url {
+	[[NSWorkspace sharedWorkspace] openURL:url];
+}
+
 @end

@@ -22,6 +22,13 @@
 		6E9B64D9187442550018A427 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B64D8187442550018A427 /* YTPlayerView.m */; };
 		6E9B64DB187449030018A427 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9B64DA187449030018A427 /* WebKit.framework */; };
 		6E9B64DD1874533E0018A427 /* embed.html in Resources */ = {isa = PBXBuildFile; fileRef = 6E9B64DC1874533E0018A427 /* embed.html */; };
+		6EB2A8891882E89500C2A160 /* MacIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A8881882E89500C2A160 /* MacIcon.xcassets */; };
+		6EB2A8901882EA6600C2A160 /* YouTube-icon-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88A1882EA6600C2A160 /* YouTube-icon-16x16.png */; };
+		6EB2A8911882EA6600C2A160 /* YouTube-icon-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88B1882EA6600C2A160 /* YouTube-icon-32x32.png */; };
+		6EB2A8921882EA6600C2A160 /* YouTube-icon-64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88C1882EA6600C2A160 /* YouTube-icon-64x64.png */; };
+		6EB2A8931882EA6600C2A160 /* YouTube-icon-128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88D1882EA6600C2A160 /* YouTube-icon-128x128.png */; };
+		6EB2A8941882EA6600C2A160 /* YouTube-icon-256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88E1882EA6600C2A160 /* YouTube-icon-256x256.png */; };
+		6EB2A8951882EA6600C2A160 /* YouTube-icon-1024x721.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88F1882EA6600C2A160 /* YouTube-icon-1024x721.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +40,7 @@
 		6E36DB0E187AF65500533597 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
 		6E41F8591882BCC4009E1BD8 /* YTVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTVideo.h; sourceTree = "<group>"; };
 		6E41F85A1882BCC4009E1BD8 /* YTVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTVideo.m; sourceTree = "<group>"; };
-		6E9B649618743EE30018A427 /* YouTubePlayer_mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer_mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E9B649618743EE30018A427 /* YouTubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E9B649718743EE30018A427 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E9B64CD18743F8A0018A427 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6E9B64CE18743F8A0018A427 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +61,14 @@
 		6EA9D4B4187AD23B007FDC01 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6EA9D4B5187AD23B007FDC01 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6EA9D4B6187AD23B007FDC01 /* YouTubePlayer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YouTubePlayer-Info.plist"; sourceTree = "<group>"; };
+		6EB2A8881882E89500C2A160 /* MacIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MacIcon.xcassets; sourceTree = "<group>"; };
+		6EB2A88A1882EA6600C2A160 /* YouTube-icon-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-16x16.png"; sourceTree = "<group>"; };
+		6EB2A88B1882EA6600C2A160 /* YouTube-icon-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-32x32.png"; sourceTree = "<group>"; };
+		6EB2A88C1882EA6600C2A160 /* YouTube-icon-64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-64x64.png"; sourceTree = "<group>"; };
+		6EB2A88D1882EA6600C2A160 /* YouTube-icon-128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-128x128.png"; sourceTree = "<group>"; };
+		6EB2A88E1882EA6600C2A160 /* YouTube-icon-256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-256x256.png"; sourceTree = "<group>"; };
+		6EB2A88F1882EA6600C2A160 /* YouTube-icon-1024x721.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-1024x721.png"; sourceTree = "<group>"; };
+		6EF14A4B1882D6D500E81854 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +94,7 @@
 		1424D300172C4D27009C773A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6E9B649618743EE30018A427 /* YouTubePlayer_mac.app */,
+				6E9B649618743EE30018A427 /* YouTubePlayer.app */,
 				6EA9D473187AD19E007FDC01 /* YouTubePlayer_ios.app */,
 			);
 			name = Products;
@@ -100,6 +115,7 @@
 				1406A77C18757FF3004181BC /* README.md */,
 				1406A77D1875804F004181BC /* NOTICE.md */,
 				6E9B64C918743F8A0018A427 /* src */,
+				6EF14A4A1882D6D500E81854 /* etc */,
 				6E11B4B9187B12AC0008934E /* third_party */,
 				1424D301172C4D27009C773A /* Frameworks */,
 				1424D300172C4D27009C773A /* Products */,
@@ -191,6 +207,21 @@
 			path = YouTubePlayer;
 			sourceTree = "<group>";
 		};
+		6EF14A4A1882D6D500E81854 /* etc */ = {
+			isa = PBXGroup;
+			children = (
+				6EB2A88A1882EA6600C2A160 /* YouTube-icon-16x16.png */,
+				6EB2A88B1882EA6600C2A160 /* YouTube-icon-32x32.png */,
+				6EB2A88C1882EA6600C2A160 /* YouTube-icon-64x64.png */,
+				6EB2A88D1882EA6600C2A160 /* YouTube-icon-128x128.png */,
+				6EB2A88E1882EA6600C2A160 /* YouTube-icon-256x256.png */,
+				6EB2A88F1882EA6600C2A160 /* YouTube-icon-1024x721.png */,
+				6EF14A4B1882D6D500E81854 /* screenshot.png */,
+				6EB2A8881882E89500C2A160 /* MacIcon.xcassets */,
+			);
+			path = etc;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,7 +239,7 @@
 			);
 			name = YouTubePlayer_mac;
 			productName = YouTubePlayer;
-			productReference = 6E9B649618743EE30018A427 /* YouTubePlayer_mac.app */;
+			productReference = 6E9B649618743EE30018A427 /* YouTubePlayer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6EA9D472187AD19E007FDC01 /* YouTubePlayer_ios */ = {
@@ -265,8 +296,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EB2A8951882EA6600C2A160 /* YouTube-icon-1024x721.png in Resources */,
 				6E9B64DD1874533E0018A427 /* embed.html in Resources */,
+				6EB2A8931882EA6600C2A160 /* YouTube-icon-128x128.png in Resources */,
+				6EB2A8891882E89500C2A160 /* MacIcon.xcassets in Resources */,
 				6E9B64D21874413A0018A427 /* YouTubePlayerMain.xib in Resources */,
+				6EB2A8921882EA6600C2A160 /* YouTube-icon-64x64.png in Resources */,
+				6EB2A8941882EA6600C2A160 /* YouTube-icon-256x256.png in Resources */,
+				6EB2A8911882EA6600C2A160 /* YouTube-icon-32x32.png in Resources */,
+				6EB2A8901882EA6600C2A160 /* YouTube-icon-16x16.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,11 +397,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Volumes/Drobo/Projects/YouTubePlayerKit/third_party/gtl_mac,
-					/Volumes/Drobo/Projects/YouTubePlayerKit/third_party/gtl_mac_debug,
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -382,7 +415,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/src/mac/YouTubePlayer/YouTubePlayer-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = YouTubePlayer;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -408,11 +441,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Volumes/Drobo/Projects/YouTubePlayerKit/third_party/gtl_mac,
-					/Volumes/Drobo/Projects/YouTubePlayerKit/third_party/gtl_mac_debug,
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -424,7 +452,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/src/mac/YouTubePlayer/YouTubePlayer-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = YouTubePlayer;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};

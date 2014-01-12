@@ -50,8 +50,11 @@ extern NSString* YTPlayerViewErrorDomain;
 // YTPlayerViewDelegate
 
 @protocol YTPlayerViewDelegate <NSObject>
--(void)player:(YTPlayerView* )playerView state:(YTPlayerViewStateType)state;
--(void)player:(YTPlayerView* )playerView error:(NSError* )error;
+@required
+  -(void)player:(YTPlayerView* )playerView state:(YTPlayerViewStateType)state;
+@optional
+  -(void)player:(YTPlayerView* )playerView error:(NSError* )error;
+  -(void)player:(YTPlayerView* )playerView clickURL:(NSURL* )url;
 @end
 
 ////////////////////////////////////////////////////////////////////////////////
