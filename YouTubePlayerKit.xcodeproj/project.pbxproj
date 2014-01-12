@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6E11B4B7187B006B0008934E /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E11B4B6187B006B0008934E /* DataSource.m */; };
+		6E1E0756188315EA006A3BBE /* PlaylistCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1E0755188315EA006A3BBE /* PlaylistCellView.m */; };
 		6E36DB08187AF55000533597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA9D4AB187AD23B007FDC01 /* AppDelegate.m */; };
 		6E36DB09187AF55300533597 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA9D4B5187AD23B007FDC01 /* ViewController.m */; };
 		6E36DB0A187AF57900533597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA9D4B3187AD23B007FDC01 /* main.m */; };
@@ -32,6 +33,8 @@
 		1406A77D1875804F004181BC /* NOTICE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.md; sourceTree = "<group>"; };
 		6E11B4B5187B006B0008934E /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		6E11B4B6187B006B0008934E /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		6E1E0754188315EA006A3BBE /* PlaylistCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistCellView.h; sourceTree = "<group>"; };
+		6E1E0755188315EA006A3BBE /* PlaylistCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistCellView.m; sourceTree = "<group>"; };
 		6E36DB0D187AF65500533597 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
 		6E36DB0E187AF65500533597 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
 		6E41F8591882BCC4009E1BD8 /* YTVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTVideo.h; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				6E41F85A1882BCC4009E1BD8 /* YTVideo.m */,
 				6E9B64CD18743F8A0018A427 /* AppDelegate.h */,
 				6E9B64CE18743F8A0018A427 /* AppDelegate.m */,
+				6E1E0754188315EA006A3BBE /* PlaylistCellView.h */,
+				6E1E0755188315EA006A3BBE /* PlaylistCellView.m */,
 				6E9B64CF18743F8A0018A427 /* main.m */,
 				6E9B64D11874413A0018A427 /* YouTubePlayerMain.xib */,
 				6E9B64D7187442550018A427 /* YTPlayerView.h */,
@@ -321,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1E0756188315EA006A3BBE /* PlaylistCellView.m in Sources */,
 				6E41F85B1882BCC4009E1BD8 /* YTVideo.m in Sources */,
 				6E9B64D4187441BA0018A427 /* main.m in Sources */,
 				6E9B64D3187441B70018A427 /* AppDelegate.m in Sources */,

@@ -87,7 +87,6 @@ NSString* YTVideoChart = @"mostPopular";
 	NSParameterAssert(row >= 0 && row < [[self playlist] count]);
 	NSTableCellView* result = [aTableView makeViewWithIdentifier:tableColumn.identifier owner:self];
 	YTVideo* video = [[self playlist] objectAtIndex:row];
-
 	[[result textField] setStringValue:[video videoTitle]];
 	[[result imageView] setImage:[[NSImage alloc] initWithContentsOfURL:[video thumbnailURL]]];
 	[result setToolTip:[video videoDescription]];
