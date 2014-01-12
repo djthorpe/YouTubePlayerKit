@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		6E11B4B7187B006B0008934E /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E11B4B6187B006B0008934E /* DataSource.m */; };
-		6E11B4C0187B4A2B0008934E /* GTL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E11B4BF187B4A230008934E /* GTL.framework */; };
 		6E36DB08187AF55000533597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA9D4AB187AD23B007FDC01 /* AppDelegate.m */; };
 		6E36DB09187AF55300533597 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA9D4B5187AD23B007FDC01 /* ViewController.m */; };
 		6E36DB0A187AF57900533597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA9D4B3187AD23B007FDC01 /* main.m */; };
 		6E36DB0B187AF5B400533597 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA9D4AC187AD23B007FDC01 /* Main_iPad.storyboard */; };
 		6E36DB0C187AF5B800533597 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA9D4AE187AD23B007FDC01 /* Main_iPhone.storyboard */; };
 		6E36DB0F187AF65500533597 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E36DB0E187AF65500533597 /* YTPlayerView.m */; };
+		6E41F85B1882BCC4009E1BD8 /* YTVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E41F85A1882BCC4009E1BD8 /* YTVideo.m */; };
 		6E9B649818743EE30018A427 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9B649718743EE30018A427 /* Cocoa.framework */; };
 		6E9B64D21874413A0018A427 /* YouTubePlayerMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9B64D11874413A0018A427 /* YouTubePlayerMain.xib */; };
 		6E9B64D3187441B70018A427 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B64CE18743F8A0018A427 /* AppDelegate.m */; };
@@ -29,9 +29,10 @@
 		1406A77D1875804F004181BC /* NOTICE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.md; sourceTree = "<group>"; };
 		6E11B4B5187B006B0008934E /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		6E11B4B6187B006B0008934E /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
-		6E11B4BF187B4A230008934E /* GTL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTL.framework; sourceTree = "<group>"; };
 		6E36DB0D187AF65500533597 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
 		6E36DB0E187AF65500533597 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
+		6E41F8591882BCC4009E1BD8 /* YTVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTVideo.h; sourceTree = "<group>"; };
+		6E41F85A1882BCC4009E1BD8 /* YTVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTVideo.m; sourceTree = "<group>"; };
 		6E9B649618743EE30018A427 /* YouTubePlayer_mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer_mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E9B649718743EE30018A427 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E9B64CD18743F8A0018A427 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E9B64DB187449030018A427 /* WebKit.framework in Frameworks */,
-				6E11B4C0187B4A2B0008934E /* GTL.framework in Frameworks */,
 				6E9B649818743EE30018A427 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,17 +109,8 @@
 		6E11B4B9187B12AC0008934E /* third_party */ = {
 			isa = PBXGroup;
 			children = (
-				6E11B4BE187B4A230008934E /* gtl_mac_debug */,
 			);
 			path = third_party;
-			sourceTree = "<group>";
-		};
-		6E11B4BE187B4A230008934E /* gtl_mac_debug */ = {
-			isa = PBXGroup;
-			children = (
-				6E11B4BF187B4A230008934E /* GTL.framework */,
-			);
-			path = gtl_mac_debug;
 			sourceTree = "<group>";
 		};
 		6E9B64C918743F8A0018A427 /* src */ = {
@@ -153,6 +144,8 @@
 				6E9B64D0187440390018A427 /* YouTubePlayer-Info.plist */,
 				6E11B4B5187B006B0008934E /* DataSource.h */,
 				6E11B4B6187B006B0008934E /* DataSource.m */,
+				6E41F8591882BCC4009E1BD8 /* YTVideo.h */,
+				6E41F85A1882BCC4009E1BD8 /* YTVideo.m */,
 				6E9B64CD18743F8A0018A427 /* AppDelegate.h */,
 				6E9B64CE18743F8A0018A427 /* AppDelegate.m */,
 				6E9B64CF18743F8A0018A427 /* main.m */,
@@ -293,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E41F85B1882BCC4009E1BD8 /* YTVideo.m in Sources */,
 				6E9B64D4187441BA0018A427 /* main.m in Sources */,
 				6E9B64D3187441B70018A427 /* AppDelegate.m in Sources */,
 				6E11B4B7187B006B0008934E /* DataSource.m in Sources */,

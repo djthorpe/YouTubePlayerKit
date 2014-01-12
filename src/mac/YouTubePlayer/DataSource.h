@@ -8,4 +8,7 @@ extern NSString* YTPlayerSelectedVideoNotification;
 	
 }
 
+// properties
+@property (retain) NSArray* playlist;
+
 @end

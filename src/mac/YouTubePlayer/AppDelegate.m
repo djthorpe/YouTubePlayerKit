@@ -1,6 +1,7 @@
 
 #import "AppDelegate.h"
 #import "YTPlayerView.h"
+#import "YTVideo.h"
 
 struct quality_lookup_t {
 	const char* name;
@@ -32,6 +33,7 @@ struct quality_lookup_t {
 -(void)applicationDidFinishLaunching:(NSNotification* )aNotification {
 	[self setSelectedQuality:@""];
 	[self setVolumeValue:50];
+	[[self ibWindow] setTitle:@"YouTube Player"];
 	
 	// listen for new video notification
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doLoadVideo:) name:YTPlayerSelectedVideoNotification object:nil];
@@ -172,10 +174,16 @@ struct quality_lookup_t {
 	[[self ibPlayer] setQuality:(YTPlayerViewQualityType)[sender tag]];
 }
 
+
+-(void)setWindowTitle:(NSString* )title {
+	[[self ibWindow] setTitle:title];
+}
+
 -(void)doLoadVideo:(NSNotification* )aNotification {
-	NSDictionary* video = [aNotification object];
-	NSLog(@"load %@",video);
-	[[self ibPlayer] load:[video objectForKey:@"id"]];
+	YTVideo* video = [aNotification object];
+	NSParameterAssert([video isKindOfClass:[YTVideo class]]);
+	[[self ibPlayer] load:[video key]];
+	[self setWindowTitle:[video videoTitle]];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -185,8 +193,6 @@ struct quality_lookup_t {
 	if(state==YTPlayerViewStateAPIReady) {
 		// when API is ready, load in video
 		[self setPlaying:NO];
-		//[[self ibPlayer] load:@"5Jp9_sgJcN0"];
-		[[self ibPlayer] load:@"_V7RwAWLNuY"];
 	} else if(state==YTPlayerViewStateLoaded) {
 		// when video is loaded, start playing
 		[self setPlaying:NO];
