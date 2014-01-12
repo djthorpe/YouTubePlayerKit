@@ -37,6 +37,7 @@ struct quality_lookup_t {
 	
 	// listen for new video notification
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doLoadVideo:) name:YTPlayerSelectedVideoNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doLoadPlaylist:) name:YTPlayerPlaylistChangedNotification object:nil];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -140,6 +141,33 @@ struct quality_lookup_t {
 	}
 }
 
+-(void)setWindowTitle:(NSString* )title {
+	[[self ibWindow] setTitle:title];
+}
+
+-(void)doLoadVideo:(NSNotification* )aNotification {
+	YTVideo* video = [aNotification object];
+	NSParameterAssert([video isKindOfClass:[YTVideo class]]);
+	[[self ibPlayer] load:[video key]];
+	[self setWindowTitle:[video videoTitle]];
+}
+
+-(void)doLoadPlaylist:(NSNotification* )aNotification {
+	[[self ibPlaylistTableView] reloadData];
+}
+
+-(void)displayErrorSheetWithMessage:(NSString* )message {
+	[self setErrorMessage:message];
+	[NSApp beginSheet:[self ibErrorPanel] modalForWindow:[self ibWindow] modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:nil];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark IBACTIONS
+
+-(IBAction)doEndErrorSheet:(id)sender {
+	[NSApp endSheet:[self ibErrorPanel]];
+}
+
 -(IBAction)doSeek:(id)sender {
 	NSTimeInterval dur = [[self ibPlayer] duration];
 	if(dur > 0.0) {
@@ -174,25 +202,8 @@ struct quality_lookup_t {
 	[[self ibPlayer] setQuality:(YTPlayerViewQualityType)[sender tag]];
 }
 
-
--(void)setWindowTitle:(NSString* )title {
-	[[self ibWindow] setTitle:title];
-}
-
--(void)doLoadVideo:(NSNotification* )aNotification {
-	YTVideo* video = [aNotification object];
-	NSParameterAssert([video isKindOfClass:[YTVideo class]]);
-	[[self ibPlayer] load:[video key]];
-	[self setWindowTitle:[video videoTitle]];
-}
-
--(void)displayErrorSheetWithMessage:(NSString* )message {
-	[self setErrorMessage:message];
-	[NSApp beginSheet:[self ibErrorPanel] modalForWindow:[self ibWindow] modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:nil];
-}
-
--(IBAction)doEndErrorSheet:(id)sender {
-	[NSApp endSheet:[self ibErrorPanel]];
+-(IBAction)doSearch:(id)sender {
+	[[self ibDataSource] doVideoSearch:[self searchText]];
 }
 
 -(void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {

@@ -3,6 +3,7 @@
 #import "YTVideo.h"
 
 NSString* YTPlayerSelectedVideoNotification = @"YTPlayerSelectedVideoNotification";
+NSString* YTPlayerPlaylistChangedNotification = @"YTPlayerPlaylistChangedNotification";
 NSString* YTAPIKey = @"AIzaSyDBmZLhc3dpn8oO1nv3rXF9YEQXMikHkLE";
 NSString* YTVideoChart = @"mostPopular";
 
@@ -16,9 +17,9 @@ NSString* YTVideoChart = @"mostPopular";
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark PRIVATE METHODS
 
--(NSArray* )playlistJSON {
+-(NSArray* )playlistForChart:(NSString* )chartName {
 	NSUInteger maxResults = 25;
-	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/youtube/v3/videos?part=%@&chart=%@&key=%@&maxResults=%lu",YTVideoPart,YTVideoChart,YTAPIKey,maxResults]];
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/youtube/v3/videos?part=%@&chart=%@&key=%@&maxResults=%lu",YTVideoPart,chartName,YTAPIKey,maxResults]];
 	NSError* error = nil;
 	NSData* data = [NSData dataWithContentsOfURL:url options:0 error:&error];
 	if(error) {
@@ -36,19 +37,43 @@ NSString* YTVideoChart = @"mostPopular";
 	return [response objectForKey:@"items"];
 }
 
+-(NSArray* )playlistForQuery:(NSString* )query {
+	NSUInteger maxResults = 25;
+	NSString* encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/youtube/v3/search?part=%@&q=%@&type=video&key=%@&maxResults=%lu",YTVideoPart,encodedQuery,YTAPIKey,maxResults]];
+	NSLog(@"URL = %@",url);
+	NSError* error = nil;
+	NSData* data = [NSData dataWithContentsOfURL:url options:0 error:&error];
+	if(error) {
+		NSLog(@"Error: %@:%@",url,error);
+		return nil;
+	}
+	NSDictionary* response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+	if(error) {
+		NSLog(@"Error: %@:%@",url,error);
+		return nil;
+	}
+	NSParameterAssert([response isKindOfClass:[NSDictionary class]]);
+	NSArray* items = [response objectForKey:@"items"];
+	NSParameterAssert([items isKindOfClass:[NSArray class]]);
+	NSLog(@"%@",response);
+	return [response objectForKey:@"items"];
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark AWAKEFROMNIB
 
 -(void)awakeFromNib {
 	// retrieve list of most popular videos if array is empty
 	if([[self playlist] count]==0) {
-		NSArray* newPlaylist = [self playlistJSON];
+		NSArray* newPlaylist = [self playlistForChart:YTVideoChart];
 		if(newPlaylist) {
 			NSMutableArray* videos = [NSMutableArray arrayWithCapacity:[newPlaylist count]];
 			for(NSDictionary* data in newPlaylist) {
 				[videos addObject:[[YTVideo alloc] initWithData:data]];
 			}
 			[self setPlaylist:videos];
+			[[NSNotificationCenter defaultCenter] postNotificationName:YTPlayerPlaylistChangedNotification object:nil userInfo:nil];			
 		}
 	}
 }
@@ -79,6 +104,21 @@ NSString* YTVideoChart = @"mostPopular";
 	if(selectedRow >= 0 && selectedRow < [[self playlist] count]) {
 		NSDictionary* video = [[self playlist] objectAtIndex:selectedRow];
 		[[NSNotificationCenter defaultCenter] postNotificationName:YTPlayerSelectedVideoNotification object:video userInfo:nil];
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark PUBLIC METHODS
+
+-(void)doVideoSearch:(NSString* )text {
+	NSArray* newPlaylist = [self playlistForQuery:text];
+	if(newPlaylist) {
+		NSMutableArray* videos = [NSMutableArray arrayWithCapacity:[newPlaylist count]];
+		for(NSDictionary* data in newPlaylist) {
+			[videos addObject:[[YTVideo alloc] initWithData:data]];
+		}
+		[self setPlaylist:videos];
+		[[NSNotificationCenter defaultCenter] postNotificationName:YTPlayerPlaylistChangedNotification object:nil userInfo:nil];
 	}
 }
 

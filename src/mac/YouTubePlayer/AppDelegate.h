@@ -10,6 +10,7 @@
 // IBOutlets
 @property (assign) IBOutlet NSWindow* ibWindow;
 @property (assign) IBOutlet NSWindow* ibErrorPanel;
+@property (assign) IBOutlet NSTableView* ibPlaylistTableView;
 @property (assign) IBOutlet YTPlayerView* ibPlayer;
 @property (assign) IBOutlet NSMenu* ibQualityMenu;
 @property (assign) IBOutlet DataSource* ibDataSource;
@@ -22,6 +23,7 @@
 @property (assign) double volumeValue;
 @property (retain) NSString* selectedQuality;
 @property (retain) NSString* errorMessage;
+@property (retain) NSString* searchText;
 
 // IBActions
 -(IBAction)doPlayPause:(id)sender;
@@ -30,5 +32,6 @@
 -(IBAction)doSetQuality:(id)sender;
 -(IBAction)doChangeQuality:(NSMenuItem* )sender;
 -(IBAction)doEndErrorSheet:(id)sender;
+-(IBAction)doSearch:(id)sender;
 
 @end

@@ -78,8 +78,10 @@
         <menu id="FcF-jU-rJM" userLabel="Quality Menu"/>
         <customObject id="Pmo-K5-pzI" customClass="AppDelegate">
             <connections>
+                <outlet property="ibDataSource" destination="NyT-Nz-vAc" id="wzo-AK-jjp"/>
                 <outlet property="ibErrorPanel" destination="d1p-Jw-dsc" id="qKE-N7-gjJ"/>
                 <outlet property="ibPlayer" destination="Ixi-Wj-Wgj" id="iFy-e7-3ym"/>
+                <outlet property="ibPlaylistTableView" destination="EqH-KA-eSy" id="y53-2q-LzU"/>
                 <outlet property="ibQualityMenu" destination="FcF-jU-rJM" id="Ss2-AB-Md1"/>
                 <outlet property="ibWindow" destination="64P-Gc-moT" id="KMD-DS-BsW"/>
             </connections>
@@ -87,11 +89,11 @@
         <window title="YouTube Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="64P-Gc-moT">
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="0.0" y="0.0" width="800" height="404"/>
+            <rect key="contentRect" x="0.0" y="0.0" width="800" height="484"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
-            <value key="minSize" type="size" width="640" height="404"/>
+            <value key="minSize" type="size" width="640" height="484"/>
             <view key="contentView" id="aU7-8w-9fU" userLabel="Content View">
-                <rect key="frame" x="0.0" y="0.0" width="800" height="404"/>
+                <rect key="frame" x="0.0" y="0.0" width="800" height="484"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BWT-IO-L6x">
@@ -298,12 +300,25 @@
                             <real value="250"/>
                         </holdingPriorities>
                     </splitView>
+                    <searchField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CTw-hI-WJE">
+                        <rect key="frame" x="20" y="436" width="440" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" sendsWholeSearchString="YES" id="y0F-tP-tRS">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </searchFieldCell>
+                        <connections>
+                            <action selector="doSearch:" target="Pmo-K5-pzI" id="8nC-25-HfF"/>
+                            <binding destination="Pmo-K5-pzI" name="value" keyPath="searchText" id="mXI-V2-cZy"/>
+                        </connections>
+                    </searchField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="BWT-IO-L6x" secondAttribute="bottom" id="9AT-RR-dZI"/>
                     <constraint firstItem="BWT-IO-L6x" firstAttribute="leading" secondItem="aU7-8w-9fU" secondAttribute="leading" id="LmZ-W8-eNg"/>
                     <constraint firstAttribute="trailing" secondItem="BWT-IO-L6x" secondAttribute="trailing" id="TYz-5Z-FES"/>
-                    <constraint firstItem="BWT-IO-L6x" firstAttribute="top" secondItem="aU7-8w-9fU" secondAttribute="top" id="pAe-ug-p6R"/>
+                    <constraint firstItem="BWT-IO-L6x" firstAttribute="top" secondItem="aU7-8w-9fU" secondAttribute="top" constant="80" id="pAe-ug-p6R"/>
                 </constraints>
             </view>
         </window>

@@ -28,13 +28,30 @@ NSString* YTVideoPart = @"id,snippet";
 	return [_data objectForKey:@"snippet"];
 }
 
+-(NSString* )kind {
+	return [_data objectForKey:@"kind"];
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 #pragma mark PROPERTIES
 
 @dynamic key, videoTitle, channelTitle, videoDescription, thumbnailURL;
 
 -(NSString* )key {
-	return [_data objectForKey:@"id"];
+	if([[self kind] isEqualToString:@"youtube#searchResult"]) {
+		NSDictionary* keyDict = [_data objectForKey:@"id"];
+		NSParameterAssert([keyDict isKindOfClass:[NSDictionary class]]);
+		NSString* kind = [keyDict objectForKey:@"kind"];
+		if([kind isEqualToString:@"youtube#video"]) {
+			return[keyDict objectForKey:@"videoId"];
+		} else {
+			return nil;
+		}
+	} else if([[self kind] isEqualToString:@"youtube#video"]) {
+		return [_data objectForKey:@"id"];
+	} else {
+		return nil;
+	}
 }
 
 -(NSString* )videoTitle {
