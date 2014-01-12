@@ -38,7 +38,7 @@ NSString* YTPlayerViewErrorDomain = @"YTPlayerViewError";
 	// add the HTML into the webview
 	NSString* embed = [self _embedResource];
 	NSParameterAssert(embed);
-	NSURL* base = [NSURL URLWithString:@"https://www.youtube.com/"];
+	NSURL* base = [NSURL URLWithString:@"http://www.youtube.com/"];
 	NSParameterAssert(base);
 	[[[self webView] mainFrame] loadHTMLString:embed baseURL:base];
 }

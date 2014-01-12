@@ -186,6 +186,19 @@ struct quality_lookup_t {
 	[self setWindowTitle:[video videoTitle]];
 }
 
+-(void)displayErrorSheetWithMessage:(NSString* )message {
+	[self setErrorMessage:message];
+	[NSApp beginSheet:[self ibErrorPanel] modalForWindow:[self ibWindow] modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:nil];
+}
+
+-(IBAction)doEndErrorSheet:(id)sender {
+	[NSApp endSheet:[self ibErrorPanel]];
+}
+
+-(void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+	[sheet orderOut:self];
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark YTPLAYERVIEW DELEGATE
 
@@ -212,7 +225,8 @@ struct quality_lookup_t {
 }
 
 -(void)player:(YTPlayerView* )sender error:(NSError* )error {
-	NSLog(@"Player error = %@",error);
+	NSString* errorMessage = [NSString stringWithFormat:@"Playback error %ld: %@",[error code],[error localizedDescription]];
+	[self displayErrorSheetWithMessage:errorMessage];
 }
 
 @end
