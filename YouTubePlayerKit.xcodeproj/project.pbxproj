@@ -23,12 +23,8 @@
 		6E9B64DB187449030018A427 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9B64DA187449030018A427 /* WebKit.framework */; };
 		6E9B64DD1874533E0018A427 /* embed.html in Resources */ = {isa = PBXBuildFile; fileRef = 6E9B64DC1874533E0018A427 /* embed.html */; };
 		6EB2A8891882E89500C2A160 /* MacIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A8881882E89500C2A160 /* MacIcon.xcassets */; };
-		6EB2A8901882EA6600C2A160 /* YouTube-icon-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88A1882EA6600C2A160 /* YouTube-icon-16x16.png */; };
-		6EB2A8911882EA6600C2A160 /* YouTube-icon-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88B1882EA6600C2A160 /* YouTube-icon-32x32.png */; };
-		6EB2A8921882EA6600C2A160 /* YouTube-icon-64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88C1882EA6600C2A160 /* YouTube-icon-64x64.png */; };
-		6EB2A8931882EA6600C2A160 /* YouTube-icon-128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88D1882EA6600C2A160 /* YouTube-icon-128x128.png */; };
-		6EB2A8941882EA6600C2A160 /* YouTube-icon-256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88E1882EA6600C2A160 /* YouTube-icon-256x256.png */; };
-		6EB2A8951882EA6600C2A160 /* YouTube-icon-1024x721.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A88F1882EA6600C2A160 /* YouTube-icon-1024x721.png */; };
+		6EB2A899188307C200C2A160 /* YouTube-logo-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A898188307C200C2A160 /* YouTube-logo-dark.png */; };
+		6EB2A89A18830C1D00C2A160 /* NOTICE.md in Resources */ = {isa = PBXBuildFile; fileRef = 1406A77D1875804F004181BC /* NOTICE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +64,7 @@
 		6EB2A88E1882EA6600C2A160 /* YouTube-icon-256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-256x256.png"; sourceTree = "<group>"; };
 		6EB2A88F1882EA6600C2A160 /* YouTube-icon-1024x721.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-1024x721.png"; sourceTree = "<group>"; };
 		6EB2A8961882EC8F00C2A160 /* build-release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-release.sh"; sourceTree = "<group>"; };
+		6EB2A898188307C200C2A160 /* YouTube-logo-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-logo-dark.png"; sourceTree = "<group>"; };
 		6EF14A4B1882D6D500E81854 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,6 +213,7 @@
 				6EB2A88D1882EA6600C2A160 /* YouTube-icon-128x128.png */,
 				6EB2A88E1882EA6600C2A160 /* YouTube-icon-256x256.png */,
 				6EB2A88F1882EA6600C2A160 /* YouTube-icon-1024x721.png */,
+				6EB2A898188307C200C2A160 /* YouTube-logo-dark.png */,
 				6EF14A4B1882D6D500E81854 /* screenshot.png */,
 				6EB2A8881882E89500C2A160 /* MacIcon.xcassets */,
 			);
@@ -267,6 +265,9 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
+					6E9B649518743EE30018A427 = {
+						DevelopmentTeam = R49J2KW76G;
+					};
 					6EA9D472187AD19E007FDC01 = {
 						DevelopmentTeam = R49J2KW76G;
 					};
@@ -296,15 +297,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EB2A8951882EA6600C2A160 /* YouTube-icon-1024x721.png in Resources */,
+				6EB2A899188307C200C2A160 /* YouTube-logo-dark.png in Resources */,
 				6E9B64DD1874533E0018A427 /* embed.html in Resources */,
-				6EB2A8931882EA6600C2A160 /* YouTube-icon-128x128.png in Resources */,
 				6EB2A8891882E89500C2A160 /* MacIcon.xcassets in Resources */,
 				6E9B64D21874413A0018A427 /* YouTubePlayerMain.xib in Resources */,
-				6EB2A8921882EA6600C2A160 /* YouTube-icon-64x64.png in Resources */,
-				6EB2A8941882EA6600C2A160 /* YouTube-icon-256x256.png in Resources */,
-				6EB2A8911882EA6600C2A160 /* YouTube-icon-32x32.png in Resources */,
-				6EB2A8901882EA6600C2A160 /* YouTube-icon-16x16.png in Resources */,
+				6EB2A89A18830C1D00C2A160 /* NOTICE.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +365,7 @@
 		14CA1D38172C4CB6000A1AF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
@@ -375,6 +373,7 @@
 		14CA1D39172C4CB6000A1AF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 			};
 			name = Release;
 		};
@@ -394,6 +393,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -414,9 +415,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/src/mac/YouTubePlayer/YouTubePlayer-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = YouTubePlayer;
-				SDKROOT = macosx;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -437,6 +439,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -451,9 +455,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/src/mac/YouTubePlayer/YouTubePlayer-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = YouTubePlayer;
-				SDKROOT = macosx;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

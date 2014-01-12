@@ -41,7 +41,6 @@ NSString* YTVideoChart = @"mostPopular";
 	NSUInteger maxResults = 25;
 	NSString* encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/youtube/v3/search?part=%@&q=%@&type=video&key=%@&maxResults=%lu",YTVideoPart,encodedQuery,YTAPIKey,maxResults]];
-	NSLog(@"URL = %@",url);
 	NSError* error = nil;
 	NSData* data = [NSData dataWithContentsOfURL:url options:0 error:&error];
 	if(error) {
@@ -56,7 +55,6 @@ NSString* YTVideoChart = @"mostPopular";
 	NSParameterAssert([response isKindOfClass:[NSDictionary class]]);
 	NSArray* items = [response objectForKey:@"items"];
 	NSParameterAssert([items isKindOfClass:[NSArray class]]);
-	NSLog(@"%@",response);
 	return [response objectForKey:@"items"];
 }
 
