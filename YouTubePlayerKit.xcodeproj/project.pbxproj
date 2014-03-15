@@ -45,8 +45,9 @@
 		6E4999D918D485C2008D16A8 /* dev_appengine.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = dev_appengine.sh; sourceTree = "<group>"; };
 		6E4999DA18D487DF008D16A8 /* YouTube-icon-64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-64x64.png"; sourceTree = "<group>"; };
 		6E4999DE18D49179008D16A8 /* orientation.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = orientation.js; sourceTree = "<group>"; };
-		6E4999DF18D49179008D16A8 /* player.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = player.js; sourceTree = "<group>"; };
+		6E4999DF18D49179008D16A8 /* player.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = player.js; sourceTree = "<group>"; wrapsLines = 0; };
 		6E4999E118D49395008D16A8 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		6E4999E318D4A1F9008D16A8 /* deploy_appengine.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy_appengine.sh; sourceTree = "<group>"; };
 		6E5BD3C318847D0A0074E883 /* YouTube-icon-76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-76x76.png"; sourceTree = "<group>"; };
 		6E5BD3C418847DB00074E883 /* YouTube-icon-152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YouTube-icon-152x152.png"; sourceTree = "<group>"; };
 		6E9B649618743EE30018A427 /* YouTubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,6 +276,7 @@
 		6EF14A4A1882D6D500E81854 /* etc */ = {
 			isa = PBXGroup;
 			children = (
+				6E4999E318D4A1F9008D16A8 /* deploy_appengine.sh */,
 				6E4999D918D485C2008D16A8 /* dev_appengine.sh */,
 				6EB2A8961882EC8F00C2A160 /* build-release.sh */,
 				6EB2A88A1882EA6600C2A160 /* YouTube-icon-16x16.png */,

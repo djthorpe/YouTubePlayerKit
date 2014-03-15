@@ -1,12 +1,14 @@
 
 var player = null;
+var entries = null;
 var parameters = {
     'controls': 0,
     'modestbranding': 1,
     'rel': 0,
     'disablekb': 1,
     'fs': 0,
-    'showinfo': 0
+    'showinfo': 0,
+	'autoplay': 1
 };
 
 function RequestVideoWithID(videoid) {
@@ -108,17 +110,59 @@ function GetVolume() {
     return player.getVolume();
 }
 window.onYouTubePlayerAPIReady = function() {
-    console.onYouTubePlayerAPIReady();
+	if(console.onYouTubePlayerAPIReady) {
+		console.onYouTubePlayerAPIReady();
+	}
 }
 function onReady(evt) {
-    console.onReady(evt.data);
+	if(console.onReady) {
+		console.onReady(evt.data);
+	}
 }
 function onStateChange(evt) {
-    console.onStateChange(evt.data);
+	if(console.onStateChange) {
+		console.onStateChange(evt.data);
+	}
 }
 function onPlaybackQualityChange(evt) {
-    console.onPlaybackQualityChange(evt.data);
+	if(console.onPlaybackQualityChange) {
+		console.onPlaybackQualityChange(evt.data);
+	}
 }
 function onError(evt) {
-    console.onError(evt.data);
+	if(console.onError) {
+		console.onError(evt.data);
+	}
 }
+
+function loadVideos() {
+    var element = document.createElement('script');
+	element.setAttribute('type', 'text/javascript');
+	element.setAttribute('src',"https://gdata.youtube.com/feeds/api/charts/live/events/live_now?v=2&alt=json-in-script&format=5&callback=showVideos");
+	document.body.appendChild(element);
+}
+
+function loadVideo(i) {
+	if(entries) {
+		var link = document.createElement('a');
+		link.href = entries[i].content.src;
+		var videoid = link.pathname.substr(link.pathname.length - 11);
+		RequestVideoWithID(videoid);
+	}
+}
+
+function showVideos(data) {
+	var feed = data.feed;
+	entries = feed.entry || [];
+	var selector = document.getElementById('selector');
+	for(var i = 0; i < entries.length; i++) {
+		var entry = entries[i];
+		selector.appendChild(new Option("" + entry.title.$t,i,false,false));
+	}
+	if(entries.length > 0) {
+		loadVideo(0);
+	}
+}
+
+
+
