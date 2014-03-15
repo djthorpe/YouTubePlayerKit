@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>YouTube Player</title>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+		<link rel="apple-touch-icon" href="img/YouTube-icon-64x64.png" />
+		<style type="text/css">
+			@import url("style.css");
+		</style>
+		<script type="text/javascript" src="https://www.youtube.com/player_api"></script>
+		<script type="text/javascript" src="js/orientation.js"></script>
+		<script type="text/javascript" src="js/player.js"></script>
+		<script type="text/javascript">
+			window.addEventListener("load",function() {
+				setTimeout(scrollTo,0,0,1);
+				RequestVideoWithID('Q7kK2ccoB20');
+			});
+		</script>
+	</head>
+	<body onorientationchange="updateOrientation();">
+		<div id="container"></div>
+	</body>
+</html>
