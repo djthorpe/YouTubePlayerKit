@@ -1,6 +1,7 @@
 
 // Initialize the app
 var myApp = new Framework7();
+var intervalTimer = null;
 
 // Add view
 var mainView = myApp.addView('.view-main', {
@@ -25,7 +26,6 @@ function MediaElement(entry) {
 	return li_node;
 }
 
-// request live videos....
 function RequestLiveVideoChart() {
 	var element = document.createElement('script');
 	element.setAttribute('type', 'text/javascript');
@@ -39,8 +39,13 @@ function DrawLiveVideoChart(data) {
 
 	// create the media list
 	var ul_node = document.createElement("UL");
+	var media_element = null;
 	for(var i = 0; i < entries.length; i++) {
-		ul_node.appendChild(MediaElement(entries[i]));
+		media_element = MediaElement(entries[i]);
+		ul_node.appendChild(media_element);
+		if(i==0) {
+			LoadVideo(media_element.childNodes[0]);
+		}
 	}
 
 	// insert media list
@@ -49,7 +54,24 @@ function DrawLiveVideoChart(data) {
 		mediaList.innerHTML = null;
 		mediaList.appendChild(ul_node);
 	}
+}
+
+function pad(width, string, padding) { 
+  return (string.length >= width) ? string : pad(width, padding + string, padding)
+}
+
+function TimeToText() {
+	var value = CurrentTime();
+	if(value < 0) {
+		return "";
+	}
+	var secs = parseInt(value % 60);
+	value = (value - secs) / 60;
+	var mins = parseInt(value % 60);
+	value = (value - mins) / 60;
+	var hours = parseInt(value);
 	
+	return "" + pad(2,"" + hours,"0") + ":" + pad(2,"" + mins,"0") + ":" + pad(2,"" + secs,"0");
 }
 
 function LoadVideo(node) {
@@ -61,9 +83,47 @@ function LoadVideo(node) {
 	if(title_node) {
 		title_node.innerHTML = title;
 	}
+	if(intervalTimer) {
+		clearInterval(intervalTimer);
+	}
+	intervalTimer = setInterval(function() {
+		var time_node = document.getElementById('toolbar-time');
+		if(time_node) {
+			time_node.innerText = TimeToText();
+		}
+	},1000);
+}
+
+// player state change
+window.onStateChange = function(data) {
+	var state = data.data;
+	switch(state) {
+		case -1:
+		case 0:
+		case 5:
+			state = "Stopped";
+			break;
+		case 1:
+			state = "Playing";
+			break;
+		case 2:
+			state = "Paused";
+			break;
+		case 3:
+			state = "Buffering";
+			break;
+		default:
+			state = "Unknown";
+	}
+	var toolbarLink = document.getElementById('toolbar-control');
+	if(toolbarLink) {
+		toolbarLink.innerText = state;
+	}
 }
 
 // when YouTube API has loaded....
 window.onYouTubePlayerAPIReady = function() {
 	RequestLiveVideoChart();
 }
+
+

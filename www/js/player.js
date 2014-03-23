@@ -36,27 +36,32 @@ function RequestVideoWithID(nodeid,videoid) {
     }
     return true;
 }
+
 function PlayVideoFromStart() {
     if(!YT.Player || player==null) return false;
     player.seekTo(0,true);
     player.playVideo();
     return true;
 }
+
 function PlayVideo() {
     if(!YT.Player || player==null) return false;
     player.playVideo();
     return true;
 }
+
 function PauseVideo() {
     if(!YT.Player || player==null) return false;
     player.pauseVideo();
     return true;
 }
+
 function SeekTo(seconds,allowSeekAhead) {
     if(!YT.Player || player==null) return false;
     player.seekTo(seconds,allowSeekAhead);
     return true;
 }
+
 function CurrentTime() {
     if(!YT.Player || player==null) return null;
     var currentTime = player.getCurrentTime();
@@ -66,6 +71,7 @@ function CurrentTime() {
         return 0.0;
     }
 }
+
 function Duration() {
     if(!YT.Player || player==null) return null;
     var duration = player.getDuration();
@@ -75,6 +81,7 @@ function Duration() {
         return null;
     }
 }
+
 function CurrentQuality() {
     if(!YT.Player || player==null) return null;
     var quality = player.getPlaybackQuality();
@@ -84,17 +91,20 @@ function CurrentQuality() {
         return null;
     }
 }
+
 function SetQuality(value) {
     if(!YT.Player || player==null) return null;
     player.setPlaybackQuality(value);
     return true;
 }
+
 function QualityValues() {
     if(!YT.Player || player==null) return null;
     var values = player.getAvailableQualityLevels();
     if(!values) return null;
     return values.join(",");
 }
+
 function SetVolume(value) {
     if(!YT.Player || player==null) return null;
     if(value >= 0 && value <= 100) {
@@ -104,6 +114,7 @@ function SetVolume(value) {
         return false;
     }
 }
+
 function GetVolume() {
     if(!YT.Player || player==null) return null;
     return player.getVolume();
@@ -114,16 +125,21 @@ function onReady(evt) {
 		console.onReady(evt.data);
 	}
 }
+
 function onStateChange(evt) {
 	if(console.onStateChange) {
 		console.onStateChange(evt.data);
+	} else if(window.onStateChange) {
+		window.onStateChange(evt.data);
 	}
 }
+
 function onPlaybackQualityChange(evt) {
 	if(console.onPlaybackQualityChange) {
 		console.onPlaybackQualityChange(evt.data);
 	}
 }
+
 function onError(evt) {
 	if(console.onError) {
 		console.onError(evt.data);
