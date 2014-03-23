@@ -9,12 +9,13 @@ libraries:
   version: "1.2"
 
 handlers:
-- url: /api/[\w\/]+
-  script: application.app
-
 - url: /
   static_files: www/index.html
   upload: www/index.html
+
+- url: /framework7/(.*)
+  static_files: third_party/Framework7/dist/\1
+  upload: third_party/Framework7/dist/(.*)
 
 - url: /(.*)
   static_files: www/\1
