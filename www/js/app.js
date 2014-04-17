@@ -31,6 +31,19 @@ function MediaElement(entry) {
 	return li_node;
 }
 
+// construct media list item (static)
+function StaticElement(title,videoid) {
+	var li_node = document.createElement("LI");
+	li_node.innerHTML = "<a href=\"#" + videoid + "\" onclick=\"LoadVideo(this);\" class=\"item-link item-content\">"
+		+ "<div class=\"item-inner\">"
+			+ "<div class=\"item-title-row\">"
+			+ "<div class=\"item-title\">" + title + "</div>"
+        + "</div>"
+		+ "</div></a></li>"
+	return li_node;
+}
+
+// request live videos....
 function RequestLiveVideoChart() {
 	var element = document.createElement('script');
 	element.setAttribute('type', 'text/javascript');
@@ -44,13 +57,10 @@ function DrawLiveVideoChart(data) {
 
 	// create the media list
 	var ul_node = document.createElement("UL");
-	var media_element = null;
+	var media_element = ul_node.appendChild(StaticElement("Wimbledon Test Stream (DVR)","F6YtcaMKL6U"));
+	ul_node.appendChild(StaticElement("Wimbledon Test Stream (NO DVR)","6HbWU5WGzHE"));
 	for(var i = 0; i < entries.length; i++) {
-		media_element = MediaElement(entries[i]);
-		ul_node.appendChild(media_element);
-		if(i==0) {
-			LoadVideo(media_element.childNodes[0]);
-		}
+		ul_node.appendChild(MediaElement(entries[i]));
 	}
 
 	// insert media list
@@ -59,6 +69,9 @@ function DrawLiveVideoChart(data) {
 		mediaList.innerHTML = null;
 		mediaList.appendChild(ul_node);
 	}
+
+	// load first video
+	LoadVideo(media_element.childNodes[0]);
 }
 
 function pad(width, string, padding) { 
@@ -80,10 +93,8 @@ function TimeToText() {
 }
 
 function LoadVideo(node) {
-	console.log("Load Video " + node);
 	var videoid = node.hash.substr(node.hash.length - 11);
 	var title = node.innerText;
-	
 	
 	RequestVideoWithID('youtube-player',videoid);
 	myApp.closePanel();
@@ -132,7 +143,6 @@ window.onStateChange = function(data) {
 // when YouTube API has loaded....
 window.onYouTubePlayerAPIReady = function() {
 	startupTimer = setInterval(function() {
-		console.log("requesting live video chart");
 		clearInterval(startupTimer);
 		RequestLiveVideoChart();
 	},1000);
