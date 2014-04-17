@@ -19,6 +19,7 @@ function RequestVideoWithID(nodeid,videoid) {
 		player.loadVideoById(videoid,0);
     } else {
         var container = document.getElementById(nodeid);
+		container.innerHTML = null;
         var width_px = window.document.body.scrollWidth;
         var height_px = window.document.body.scrollHeight;
 		player = new YT.Player(container,{
@@ -64,7 +65,10 @@ function SeekTo(seconds,allowSeekAhead) {
 
 function CurrentTime() {
     if(!YT.Player || player==null) return null;
-    var currentTime = player.getCurrentTime();
+    var currentTime = null;
+	if(player.getCurrentTime) {
+		currentTime = player.getCurrentTime();
+	}
     if(currentTime) {
         return currentTime;
     } else {

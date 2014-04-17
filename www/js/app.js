@@ -1,6 +1,7 @@
 
 // Initialize the app
 var myApp = new Framework7();
+var startupTimer = null;
 var intervalTimer = null;
 
 // Add view
@@ -16,13 +17,17 @@ function MediaElement(entry) {
 	var videoid = link.pathname.substr(link.pathname.length - 11);
 
 	var li_node = document.createElement("LI");
-	li_node.innerHTML = "<a href=\"#" + videoid + "\" onclick=\"LoadVideo(this);\" class=\"item-link item-content\">"
+	li_node.ontouchstart = function() {
+		LoadVideo(this.childNodes[0]);
+		return false;
+	}
+	li_node.innerHTML = "<a href=\"#" + videoid + "\" onclick=\"console.log(this); LoadVideo(this); return false;\" class=\"item-link item-content\">"
 		+ "<div class=\"item-inner\">"
 			+ "<div class=\"item-title-row\">"
 			+ "<div class=\"item-title\">" + entry.title.$t + "</div>"
-        + "</div>"
+		+ "</div>"
 		+ "<div class=\"item-text\">" + entry.summary.$t + "</div>"
-		+ "</div></a></li>"
+		+ "</div></a>"
 	return li_node;
 }
 
@@ -75,8 +80,11 @@ function TimeToText() {
 }
 
 function LoadVideo(node) {
+	console.log("Load Video " + node);
 	var videoid = node.hash.substr(node.hash.length - 11);
 	var title = node.innerText;
+	
+	
 	RequestVideoWithID('youtube-player',videoid);
 	myApp.closePanel();
 	var title_node = document.getElementById('video-title');
@@ -123,7 +131,11 @@ window.onStateChange = function(data) {
 
 // when YouTube API has loaded....
 window.onYouTubePlayerAPIReady = function() {
-	RequestLiveVideoChart();
+	startupTimer = setInterval(function() {
+		console.log("requesting live video chart");
+		clearInterval(startupTimer);
+		RequestLiveVideoChart();
+	},1000);
 }
 
 
