@@ -21,7 +21,7 @@ function MediaElement(entry) {
 		LoadVideo(this.childNodes[0]);
 		return false;
 	}
-	li_node.innerHTML = "<a href=\"#" + videoid + "\" onclick=\"console.log(this); LoadVideo(this); return false;\" class=\"item-link item-content\">"
+	li_node.innerHTML = "<a href=\"#" + videoid + "\" onclick=\"LoadVideo(this); return false;\" class=\"item-link item-content\">"
 		+ "<div class=\"item-inner\">"
 			+ "<div class=\"item-title-row\">"
 			+ "<div class=\"item-title\">" + entry.title.$t + "</div>"
@@ -34,12 +34,16 @@ function MediaElement(entry) {
 // construct media list item (static)
 function StaticElement(title,videoid) {
 	var li_node = document.createElement("LI");
-	li_node.innerHTML = "<a href=\"#" + videoid + "\" onclick=\"LoadVideo(this);\" class=\"item-link item-content\">"
+	li_node.ontouchstart = function() {
+		LoadVideo(this.childNodes[0]);
+		return false;
+	}
+	li_node.innerHTML = "<a href=\"#" + videoid + "\" onclick=\"LoadVideo(this); return false;\" class=\"item-link item-content\">"
 		+ "<div class=\"item-inner\">"
 			+ "<div class=\"item-title-row\">"
-			+ "<div class=\"item-title\">" + title + "</div>"
-        + "</div>"
-		+ "</div></a></li>"
+				+ "<div class=\"item-title\">" + title + "</div>"
+			+ "</div>"
+		+ "</div></a>"
 	return li_node;
 }
 
