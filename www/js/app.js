@@ -10,41 +10,39 @@ var mainView = myApp.addView('.view-main', {
 });
 
 // construct media list item
-function MediaElement(entry) {
-
-	var link = document.createElement('a');
-	link.href = entry.content.src;
-	var videoid = link.pathname.substr(link.pathname.length - 11);
-
+function ListItemNode(videoid,title,summary) {
 	var li_node = document.createElement("LI");
 	li_node.ontouchstart = function() {
 		LoadVideo(this.childNodes[0]);
 		return false;
 	}
-	li_node.innerHTML = "<a href=\"#" + videoid + "\" onclick=\"LoadVideo(this); return false;\" class=\"item-link item-content\">"
+	li_node.onclick = function() {
+		LoadVideo(this.childNodes[0]);
+		return false;
+	}
+	li_node.innerHTML = "<a href=\"#" + videoid + "\" class=\"item-link item-content\">"
 		+ "<div class=\"item-inner\">"
 			+ "<div class=\"item-title-row\">"
-			+ "<div class=\"item-title\">" + entry.title.$t + "</div>"
+			+ "<div class=\"item-title\">" + title + "</div>"
 		+ "</div>"
-		+ "<div class=\"item-text\">" + entry.summary.$t + "</div>"
-		+ "</div></a>"
+		+ "<div class=\"item-text\">" + summary + "</div>"
+		+ "</div></a>";
 	return li_node;
 }
 
-// construct media list item (static)
-function StaticElement(title,videoid) {
+function MediaElement(entry) {
+	var link = document.createElement('a');
+	link.href = entry.content.src;
+	var videoid = link.pathname.substr(link.pathname.length - 11);
+	return ListItemNode(videoid,entry.title.$t,entry.summary.$t);
+}
+function StaticElement(videoid,title,summary) {
 	var li_node = document.createElement("LI");
 	li_node.ontouchstart = function() {
 		LoadVideo(this.childNodes[0]);
 		return false;
 	}
-	li_node.innerHTML = "<a href=\"#" + videoid + "\" onclick=\"LoadVideo(this); return false;\" class=\"item-link item-content\">"
-		+ "<div class=\"item-inner\">"
-			+ "<div class=\"item-title-row\">"
-				+ "<div class=\"item-title\">" + title + "</div>"
-			+ "</div>"
-		+ "</div></a>"
-	return li_node;
+	return ListItemNode(videoid,title,summary);
 }
 
 // request live videos....
@@ -61,8 +59,8 @@ function DrawLiveVideoChart(data) {
 
 	// create the media list
 	var ul_node = document.createElement("UL");
-	var media_element = ul_node.appendChild(StaticElement("Wimbledon Test Stream (DVR)","F6YtcaMKL6U"));
-	ul_node.appendChild(StaticElement("Wimbledon Test Stream (NO DVR)","6HbWU5WGzHE"));
+	var media_element = ul_node.appendChild(StaticElement("F6YtcaMKL6U","Wimbledon Test Stream","DVR"));
+	ul_node.appendChild(StaticElement("6HbWU5WGzHE","Wimbledon Test Stream","NO DVR"));
 	for(var i = 0; i < entries.length; i++) {
 		ul_node.appendChild(MediaElement(entries[i]));
 	}
@@ -96,15 +94,20 @@ function TimeToText() {
 	return "" + pad(2,"" + hours,"0") + ":" + pad(2,"" + mins,"0") + ":" + pad(2,"" + secs,"0");
 }
 
-function LoadVideo(node) {
-	var videoid = node.hash.substr(node.hash.length - 11);
-	var title = node.innerText;
-	
-	RequestVideoWithID('youtube-player',videoid);
-	myApp.closePanel();
+function SetTitle(title) {
 	var title_node = document.getElementById('video-title');
 	if(title_node) {
 		title_node.innerHTML = title;
+	}
+}
+
+function LoadVideo(node) {
+	var videoid = node.hash.substr(node.hash.length - 11);
+	var title = node.getElementsByClassName('item-title');
+	RequestVideoWithID('youtube-player',videoid);
+	myApp.closePanel();
+	if(title.length) {
+		SetTitle(title[0].innerText);
 	}
 	if(intervalTimer) {
 		clearInterval(intervalTimer);
@@ -148,7 +151,9 @@ window.onStateChange = function(data) {
 window.onYouTubePlayerAPIReady = function() {
 	startupTimer = setInterval(function() {
 		clearInterval(startupTimer);
+		SetTitle("REQ");
 		RequestLiveVideoChart();
+		SetTitle("REQ2");
 	},1000);
 }
 
