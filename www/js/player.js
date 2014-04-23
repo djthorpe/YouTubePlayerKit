@@ -149,5 +149,3 @@ function onError(evt) {
 		console.onError(evt.data);
 	}
 }
-
-

@@ -149,11 +149,12 @@ window.onStateChange = function(data) {
 
 // when YouTube API has loaded....
 window.onYouTubePlayerAPIReady = function() {
+	SetTitle("YouTube Live Player [0]");
 	startupTimer = setInterval(function() {
 		clearInterval(startupTimer);
-		SetTitle("REQ");
+		SetTitle("YouTube Live Player [1]");
 		RequestLiveVideoChart();
-		SetTitle("REQ2");
+		SetTitle("YouTube Live Player [2]");
 	},1000);
 }
 
