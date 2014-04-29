@@ -59,10 +59,15 @@ function DrawLiveVideoChart(data) {
 
 	// create the media list
 	var ul_node = document.createElement("UL");
-	var media_element = ul_node.appendChild(StaticElement("F6YtcaMKL6U","Wimbledon Test Stream","DVR"));
-	ul_node.appendChild(StaticElement("6HbWU5WGzHE","Wimbledon Test Stream","NO DVR"));
+	var first_media_element = null;
+	//ul_node.appendChild(StaticElement("F6YtcaMKL6U","Wimbledon Test Stream","DVR"));
+	//ul_node.appendChild(StaticElement("6HbWU5WGzHE","Wimbledon Test Stream","NO DVR"));
 	for(var i = 0; i < entries.length; i++) {
-		ul_node.appendChild(MediaElement(entries[i]));
+		var this_media_element = MediaElement(entries[i]);
+		ul_node.appendChild(this_media_element);
+		if(i==0) {
+			first_media_element = this_media_element;
+		}
 	}
 
 	// insert media list
@@ -71,9 +76,11 @@ function DrawLiveVideoChart(data) {
 		mediaList.innerHTML = null;
 		mediaList.appendChild(ul_node);
 	}
-
+	
 	// load first video
-	LoadVideo(media_element.childNodes[0]);
+	if(first_media_element) {
+		LoadVideo(first_media_element.childNodes[0]);
+	}
 }
 
 function pad(width, string, padding) { 
@@ -149,12 +156,10 @@ window.onStateChange = function(data) {
 
 // when YouTube API has loaded....
 window.onYouTubePlayerAPIReady = function() {
-	SetTitle("YouTube Live Player [0]");
+	SetTitle("YouTube Live Player");
 	startupTimer = setInterval(function() {
 		clearInterval(startupTimer);
-		SetTitle("YouTube Live Player [1]");
 		RequestLiveVideoChart();
-		SetTitle("YouTube Live Player [2]");
 	},1000);
 }
 
