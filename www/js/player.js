@@ -20,8 +20,8 @@ function RequestVideoWithID(nodeid,videoid) {
     } else {
         var container = document.getElementById(nodeid);
 		container.innerHTML = null;
-        var width_px = window.document.body.scrollWidth;
-        var height_px = window.document.body.scrollHeight;
+        var width_px = container.scrollWidth;
+        var height_px = width_px * 9 / 16;
 		player = new YT.Player(container,{
 			videoId: videoid,
 			width: width_px,
