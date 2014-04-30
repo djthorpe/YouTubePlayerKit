@@ -171,10 +171,10 @@ window.onStateChange = function(data) {
 			state = "Stopped";
 			break;
 		case 1:
-			state = "Playing";
+			state = "<span>Playing</span>";
 			break;
 		case 2:
-			state = "Paused";
+			state = "<span>Paused</span>";
 			break;
 		case 3:
 			state = "Buffering";
@@ -184,7 +184,7 @@ window.onStateChange = function(data) {
 	}
 	var toolbarLink = document.getElementById('toolbar-control');
 	if(toolbarLink) {
-		toolbarLink.innerText = state;
+		toolbarLink.innerHTML = state;
 	}
 }
 

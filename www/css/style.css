@@ -18,3 +18,11 @@ div.player-wrapper {
 	padding-top: 45px;
 	padding-bottom: 45px;
 }
+
+#toolbar-control span {
+	line-height: 35px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-radius: 8px;
+	border: 1px solid #007aff;
+}
