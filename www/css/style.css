@@ -9,37 +9,10 @@ html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
     -webkit-text-size-adjust: none;
 }
 
-body {
-    font-size: 62.5%; /* 62.5% means 1em = 10px */
+#toolbar-stats div {
+	background: url(/img/red-circle.png) no-repeat black;
+	border-radius: 8px 8px 8px 8px;
+	font-size: 12px;
+	color: white;
+	padding: 2px 8px 2px 16px;
 }
-
-ul, li, ol, dl, dd, dt {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-a {
-    text-decoration: none;
-}
-
-/*-----------------------------
-SITE SPECIFIC STYLES
------------------------------*/
-
-body {
-    background:#000;
-    font-family: Helvetica; /* Helvetica is on the iPhone already, so you may as well take advantage */
-    color:#aaa;
-}
-
-p {
-    font-size:12px;
-    padding-bottom:8px;
-}
-
-a {
-    color:#fff000;
-    text-decoration:none;
-}
-

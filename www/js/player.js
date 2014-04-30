@@ -57,6 +57,16 @@ function PauseVideo() {
     return true;
 }
 
+function PlayPauseVideo() {
+    if(!YT.Player || player==null) return false;
+	if(player.getPlayerState()==1) {
+		PauseVideo();
+	} else if(player.getPlayerState() != 3) {
+		PlayVideo();
+	}
+    return true;
+}
+
 function SeekTo(seconds,allowSeekAhead) {
     if(!YT.Player || player==null) return false;
     player.seekTo(seconds,allowSeekAhead);

@@ -28,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14068EB91910F83F00DB59BF /* red-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-circle.png"; sourceTree = "<group>"; };
 		1406A77C18757FF3004181BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1406A77D1875804F004181BC /* NOTICE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.md; sourceTree = "<group>"; };
 		149D735918DE042E00E5A072 /* framework7.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = framework7.css; sourceTree = "<group>"; };
@@ -405,6 +406,7 @@
 		6E4999D718D485A6008D16A8 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				14068EB91910F83F00DB59BF /* red-circle.png */,
 				6E4999DA18D487DF008D16A8 /* YouTube-icon-64x64.png */,
 				6E4999D818D485A6008D16A8 /* favicon.ico */,
 			);

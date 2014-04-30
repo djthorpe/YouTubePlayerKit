@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>YouTube Player Kit | Live Stream Test Page</title>
     <link rel="stylesheet" href="/framework7/css/framework7.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 	<script type="text/javascript">
 		function init() {
 			// Load YouTube API
@@ -37,7 +38,8 @@
         </div>
         <div class="toolbar">
 			<div class="toolbar-inner">
-				<a href="#" id="toolbar-control" class="link"></a>
+				<a href="#" onclick="PlayPauseVideo(); return false;" id="toolbar-control" class="link"></a>
+				<div id="toolbar-stats"></div>
 				<a href="#" id="toolbar-time" class="link"></a>
 			</div>
 		</div>

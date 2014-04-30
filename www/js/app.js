@@ -3,6 +3,8 @@
 var myApp = new Framework7();
 var startupTimer = null;
 var intervalTimer = null;
+var statsTimer = null;
+var API_KEY = "AIzaSyAjcdMmJjfmQD8eUOjpUIlaL6vwVHlLmRs";
 
 // Add view
 var mainView = myApp.addView('.view-main', {
@@ -101,6 +103,8 @@ function TimeToText() {
 	return "" + pad(2,"" + hours,"0") + ":" + pad(2,"" + mins,"0") + ":" + pad(2,"" + secs,"0");
 }
 
+
+
 function SetTitle(title) {
 	var title_node = document.getElementById('video-title');
 	if(title_node) {
@@ -108,10 +112,32 @@ function SetTitle(title) {
 	}
 }
 
+function DrawLiveVideoStatistics(data) {
+	var node = document.getElementById('toolbar-stats');
+	if(data && data.items && data.items.length) {
+		var statistics = data.items[0].liveStreamingDetails;
+		if(statistics && statistics.concurrentViewers) {
+			node.innerHTML = "<div>" + statistics.concurrentViewers + "&nbsp;watching&nbsp;now</div>";
+		}
+	} else {
+		node.innerHTML = null;
+	}
+}
+
+function RequestVideoStatistics(videoid) {
+	var element = document.createElement('script');
+	element.setAttribute('type', 'text/javascript');
+	element.setAttribute('src',"https://www.googleapis.com/youtube/v3/videos?part=liveStreamingDetails&id=" + videoid + "&key=" + API_KEY + "&callback=DrawLiveVideoStatistics");
+	document.body.appendChild(element);
+}
+
 function LoadVideo(node) {
 	var videoid = node.hash.substr(node.hash.length - 11);
 	var title = node.getElementsByClassName('item-title');
+
+	DrawLiveVideoStatistics();
 	RequestVideoWithID('youtube-player',videoid);
+	
 	myApp.closePanel();
 	if(title.length) {
 		SetTitle(title[0].innerText);
@@ -124,7 +150,15 @@ function LoadVideo(node) {
 		if(time_node) {
 			time_node.innerText = TimeToText();
 		}
-	},1000);
+	},1000); // once a second
+	
+	if(statsTimer) {
+		clearInterval(statsTimer);
+	}
+	statsTimer = setInterval(function() {
+		RequestVideoStatistics(videoid);
+	},1000 * 60); // once a minute
+	RequestVideoStatistics(videoid); // do it now
 }
 
 // player state change
