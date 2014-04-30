@@ -116,7 +116,7 @@
 		149D73B318DE042E00E5A072 /* transitions.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = transitions.html; sourceTree = "<group>"; };
 		149D73B418DE042E00E5A072 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		149D73B618DE042E00E5A072 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		149D73FF18DE083900E5A072 /* app.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = app.js; sourceTree = "<group>"; };
+		149D73FF18DE083900E5A072 /* app.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = app.js; sourceTree = "<group>"; wrapsLines = 0; };
 		6E11B4B5187B006B0008934E /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		6E11B4B6187B006B0008934E /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		6E1E0754188315EA006A3BBE /* PlaylistCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistCellView.h; sourceTree = "<group>"; };

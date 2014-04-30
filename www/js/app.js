@@ -127,7 +127,7 @@ function DrawLiveVideoStatistics(data) {
 function RequestVideoStatistics(videoid) {
 	var element = document.createElement('script');
 	element.setAttribute('type', 'text/javascript');
-	element.setAttribute('src',"https://www.googleapis.com/youtube/v3/videos?part=liveStreamingDetails&id=" + videoid + "&key=" + API_KEY + "&callback=DrawLiveVideoStatistics");
+	element.setAttribute('src',"https://www.googleapis.com/youtube/v3/videos?part=liveStreamingDetails&id=" + videoid + "&key=" + API_KEY + "&callback=DrawLiveVideoStatistics&ts=" + new Date().getTime());
 	document.body.appendChild(element);
 }
 
