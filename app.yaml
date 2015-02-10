@@ -14,8 +14,8 @@ handlers:
   upload: www/index.html
 
 - url: /framework7/(.*)
-  static_files: third_party/Framework7/dist/\1
-  upload: third_party/Framework7/dist/(.*)
+  static_files: third_party/Framework7-1.0.0/dist/\1
+  upload: third_party/Framework7-1.0.0/dist/(.*)
 
 - url: /(.*)
   static_files: www/\1

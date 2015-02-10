@@ -1,0 +1,42 @@
+
+div.wrapper {
+	margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    background-color: #b0e0e6;
+}
+
+div.player {
+	height: 480px;
+}
+
+div.playlist {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 100px;
+    white-space: nowrap;
+    position: relative;
+}
+
+div.playlist li {
+    border: 1px solid white;
+    padding: 0;
+    width: 182px;
+}
+
+div.playlist li div.parent {
+	float: left;
+	background-size: cover;
+	position: relative;
+}
+
+div.playlist li div.parent span {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	background: rgba(0, 0, 0, 0.75);
+	padding: 4px 8px;
+	color: white;
+	margin: 0;
+	font: 14px Sans-Serif;
+}
