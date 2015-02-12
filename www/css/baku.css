@@ -12,6 +12,8 @@ div.player {
 
 div.status {
 	height: 25px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 div.status span {
