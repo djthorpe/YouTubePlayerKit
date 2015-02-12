@@ -9,7 +9,88 @@ var API_VERSION = "v3";
 
 // change these to point to the correct live stream and highlights playlist
 var LIVE_ID = "VYlQJbsVs48";
-var PLAYLIST_ID = "PLG8IrydigQffEjlHL-JiguwzLUrhgoIdY";
+var PLAYLIST_ID = "UUoMdktPbSTixAyNGwb-UYkQ"; // uploads
+//var PLAYLIST_ID = "PLG8IrydigQffEjlHL-JiguwzLUrhgoIdY";
+
+// youtube player
+var YouTubePlayer = {
+	// properties
+	'container': null,
+	'player': null,
+	'callback': null,
+	'parameters': {
+		'controls': 0,
+		'modestbranding': 1,
+		'rel': 0,
+		'disablekb': 1,
+		'fs': 0,
+		'showinfo': 0,
+		'autoplay': 1
+	},
+	// public functions
+	'onLoad': function(nodeId) {
+		console.log("YouTubePlayer.onLoad");
+		
+		YouTubePlayer.container = document.getElementById(nodeId);
+		if(YouTubePlayer.container) {
+			// incude the YouTube Player
+			var element = document.createElement('script');
+			element.setAttribute('type','text/javascript');
+			element.setAttribute('src',"https://www.youtube.com/player_api");
+			document.body.appendChild(element);
+		}
+	},
+	'loadVideo': function(videoId) {
+		console.log("YouTubePlayer.loadVideo(" + videoId + ")");
+		if(!YT.Player) {
+			return false;
+		}
+		if(YouTubePlayer.player) {
+			YouTubePlayer.player.loadVideoById(videoId,0);
+		} else {
+			YouTubePlayer.container.innerHTML = null;
+			var width_px = YouTubePlayer.container.scrollWidth;
+			var height_px = width_px * 9 / 16;
+			YouTubePlayer.player = new YT.Player(YouTubePlayer.container,{
+				videoId: videoId,
+				width: width_px,
+				height: height_px,
+				playerVars: YouTubePlayer.parameters,
+				events: {
+					onReady: YouTubePlayer.onReady,
+					onStateChange: YouTubePlayer.onStateChange,
+					onPlaybackQualityChange: YouTubePlayer.onPlaybackQualityChange,
+					onError: YouTubePlayer.onError
+				}
+			});
+		}
+		return true;
+	},
+	'onReady': function() {
+		console.log("YouTubePlayer.onReady");
+	},
+	'onStateChange': function(evt) {
+		console.log("YouTubePlayer.onStateChange(" + evt.data + ")");
+		if(YouTubePlayer.callback && YouTubePlayer.callback.onStateChange) {
+			YouTubePlayer.callback.onStateChange(evt.data);
+		}
+	},
+	'onPlaybackQualityChange': function(evt) {
+		console.log("YouTubePlayer.onPlaybackQualityChange(" + evt.data + ")");
+	},
+	'onError': function(evt) {
+		console.log("YouTubePlayer.onError(" + evt.data + ")");
+	},
+	'getVideoId': function() {
+		if(YouTubePlayer.player) {
+			var url = YouTubePlayer.player.getVideoUrl();
+			if(url) {
+				return url.substr(url.length - 11);
+			}
+		}
+		return null;
+	}
+};
 
 // the application
 var BakuApp = {
@@ -63,13 +144,6 @@ var BakuApp = {
 		for(var item in response.items) {
 			BakuApp.appendPlaylistItem(response.items[item],node);
 		}
-
-/*
-        <li class="item">
-            <span>Test Data1</span>
-        </li>
-*/
-		
 	},
 	'generateItem': function(item) {
 		var title = item.snippet.title;
@@ -81,25 +155,27 @@ var BakuApp = {
 		itemNode.id = videoId;
 
 		var divParent = document.createElement("DIV");
+		var gradientString = "linear-gradient(rgba(1,1,1,0.5),rgba(1,1,1,0.5))";
+		var urlString = "url(" + thumbnail + ")";
 		divParent.className = "parent";
-		divParent.style.backgroundImage = "url('" + thumbnail + "');";
+		divParent.style.backgroundImage = gradientString + "," + urlString;
 		itemNode.appendChild(divParent);
 
-		var titleNode = document.createElement("DIV");
-		titleNode.appendChild(document.createTextNode(title));
-		divParent.appendChild(titleNode);
+		var textNode = document.createElement("H1");
+		textNode.appendChild(document.createTextNode(title));
+		divParent.appendChild(textNode);
 		
-/*
-		itemNode.appendChild(divParent);
+		// add onClick event for textNode
+		textNode.addEventListener('click',BakuApp.onClick.bind(this,videoId));
 
-		var imgNode = document.createElement("IMG");
-		imgNode.src = thumbnail;
-		
- 
-		divParent.appendChild(imgNode);
-		divParent.appendChild(titleNode);
-*/
 		return itemNode;
+	},
+	'onClick': function(videoId) {
+		console.log("BakuApp.onClick(" + videoId + ")");
+		var itemNode = document.getElementById(videoId);
+		if(itemNode) {
+			YouTubePlayer.loadVideo(videoId);
+		}
 	},
 	'appendPlaylistItem': function(item,parentNode) {
 		var videoId = item.snippet.resourceId.videoId;
@@ -116,12 +192,59 @@ var BakuApp = {
 				}
 			}
 		}
+	},
+	'initYouTubePlayer': function() {
+		console.log("BakuApp.initYouTubePlayer");
+		YouTubePlayer.callback = BakuApp;
+		YouTubePlayer.loadVideo(LIVE_ID);
+	},
+	'onStateChange': function(state) {
+		switch(state) {
+		case 0:
+		case 5:
+			// stopped - load the live video
+			if(YouTubePlayer.getVideoId() != LIVE_ID) {
+				YouTubePlayer.loadVideo(LIVE_ID);
+			}
+			break;
+		case 1:
+			// playing
+			break;
+		case 2:
+			// paused - load the live video
+			if(YouTubePlayer.getVideoId() != LIVE_ID) {
+				YouTubePlayer.loadVideo(LIVE_ID);
+			}
+			break;
+		case 3:
+			// buffering
+			break;
+		case -1:
+		default:
+			// other
+		}
+		
+		BakuApp.displayStatus();
+		
+	},
+	'displayStatus': function() {
+		var statusNode = document.getElementById('ytstatus');
+		if(YouTubePlayer.getVideoId() == LIVE_ID) {
+			statusNode.innerHTML = "<span>PLAYING LIVE VIDEO</span>";
+		} else {
+			statusNode.innerHTML = "<span>PLAYING HIGHLIGHTS</span>";
+		}
 	}
-	
 };
 
 // temporary namespace fudge!
 var initGAPI = BakuApp.initGAPI;
 
-// bootstrap the onload
+// temporary namespace fudge!
+window.onYouTubePlayerAPIReady = BakuApp.initYouTubePlayer;
+
+// bootstrap the onload events
 window.addEventListener("load",BakuApp.onLoad);
+window.addEventListener("load",YouTubePlayer.onLoad.bind(this,'ytplayer'));
+
+

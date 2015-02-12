@@ -16,7 +16,6 @@
 		6E36DB0F187AF65500533597 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E36DB0E187AF65500533597 /* YTPlayerView.m */; };
 		6E41F85B1882BCC4009E1BD8 /* YTVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E41F85A1882BCC4009E1BD8 /* YTVideo.m */; };
 		6E99BD1B1A8A56F10025650B /* baku2015.html in Resources */ = {isa = PBXBuildFile; fileRef = 6E99BD1A1A8A56F10025650B /* baku2015.html */; };
-		6E99BD1D1A8A57D00025650B /* baku.js in Resources */ = {isa = PBXBuildFile; fileRef = 6E99BD1C1A8A57D00025650B /* baku.js */; };
 		6E9B649818743EE30018A427 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9B649718743EE30018A427 /* Cocoa.framework */; };
 		6E9B64D21874413A0018A427 /* YouTubePlayerMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9B64D11874413A0018A427 /* YouTubePlayerMain.xib */; };
 		6E9B64D3187441B70018A427 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B64CE18743F8A0018A427 /* AppDelegate.m */; };
@@ -1535,7 +1534,6 @@
 				6E9B64DD1874533E0018A427 /* embed.html in Resources */,
 				6EB2A8891882E89500C2A160 /* Icons.xcassets in Resources */,
 				6E9B64D21874413A0018A427 /* YouTubePlayerMain.xib in Resources */,
-				6E99BD1D1A8A57D00025650B /* baku.js in Resources */,
 				6EB2A89A18830C1D00C2A160 /* NOTICE.md in Resources */,
 				6E99BD1B1A8A56F10025650B /* baku2015.html in Resources */,
 			);
