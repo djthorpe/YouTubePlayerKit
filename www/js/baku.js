@@ -96,6 +96,7 @@ var YouTubePlayer = {
 var BakuApp = {
 	// properties
 	'timer': null,
+	'pausetimer': null,
 	
 	// public functions
 	'onLoad': function () {
@@ -199,6 +200,10 @@ var BakuApp = {
 		YouTubePlayer.loadVideo(LIVE_ID);
 	},
 	'onStateChange': function(state) {
+		if(BakuApp.pausetimer) {
+			clearInterval(BakuApp.pausetimer);
+			BakuApp.pausetimer = null;
+		}
 		switch(state) {
 		case 0:
 		case 5:
@@ -211,9 +216,10 @@ var BakuApp = {
 			// playing
 			break;
 		case 2:
-			// paused - load the live video
+			// paused - set up timer so that if no state changes in two seconds, the live video
+			// is reloaded
 			if(YouTubePlayer.getVideoId() != LIVE_ID) {
-				YouTubePlayer.loadVideo(LIVE_ID);
+				BakuApp.pausetimer = setTimeout(YouTubePlayer.loadVideo.bind(this,LIVE_ID),5 * 1000);
 			}
 			break;
 		case 3:
@@ -223,16 +229,14 @@ var BakuApp = {
 		default:
 			// other
 		}
-		
 		BakuApp.displayStatus();
-		
 	},
 	'displayStatus': function() {
 		var statusNode = document.getElementById('ytstatus');
 		if(YouTubePlayer.getVideoId() == LIVE_ID) {
-			statusNode.innerHTML = "<span>PLAYING LIVE VIDEO</span>";
+			statusNode.innerHTML = "<span class=\"live\">PLAYING LIVE VIDEO</span>";
 		} else {
-			statusNode.innerHTML = "<span>PLAYING HIGHLIGHTS</span>";
+			statusNode.innerHTML = "<span>PLAYING HIGHLIGHTS</span> &nbsp; Pause or stop to return to live";
 		}
 	}
 };

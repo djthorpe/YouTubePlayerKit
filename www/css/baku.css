@@ -14,6 +14,7 @@ div.status {
 	height: 25px;
 	margin-left: 20px;
 	margin-right: 20px;
+	color: #eee;
 }
 
 div.status span {
@@ -23,6 +24,10 @@ div.status span {
 	font-size: 12px;
 	padding: 5px 10px 5px 10px;
 	text-decoration: none;
+}
+
+div.status span.live {
+	background: #ff3434;
 }
 
 div.playlist {
