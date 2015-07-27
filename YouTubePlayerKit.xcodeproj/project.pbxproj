@@ -33,6 +33,10 @@
 		1406A77C18757FF3004181BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1406A77D1875804F004181BC /* NOTICE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.md; sourceTree = "<group>"; };
 		149D73FF18DE083900E5A072 /* app.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = app.js; sourceTree = "<group>"; wrapsLines = 0; };
+		14EB99D71B66A79200F5AC45 /* favicon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = favicon.ico; sourceTree = "<group>"; };
+		14EB99D81B66A79200F5AC45 /* marksandspencer.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = marksandspencer.html; sourceTree = "<group>"; };
+		14EB99D91B66A79F00F5AC45 /* marksandspencer.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = marksandspencer.css; sourceTree = "<group>"; };
+		14EB99DA1B66A7AD00F5AC45 /* marksandspencer.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = marksandspencer.js; sourceTree = "<group>"; };
 		6E11B4B5187B006B0008934E /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		6E11B4B6187B006B0008934E /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		6E1E0754188315EA006A3BBE /* PlaylistCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistCellView.h; sourceTree = "<group>"; };
@@ -501,6 +505,8 @@
 		6E4999CC18D4700D008D16A8 /* www */ = {
 			isa = PBXGroup;
 			children = (
+				14EB99D71B66A79200F5AC45 /* favicon.ico */,
+				14EB99D81B66A79200F5AC45 /* marksandspencer.html */,
 				6E4999E018D49395008D16A8 /* css */,
 				6E4999DD18D49179008D16A8 /* js */,
 				6E4999D718D485A6008D16A8 /* img */,
@@ -523,6 +529,7 @@
 		6E4999DD18D49179008D16A8 /* js */ = {
 			isa = PBXGroup;
 			children = (
+				14EB99DA1B66A7AD00F5AC45 /* marksandspencer.js */,
 				6E4999DE18D49179008D16A8 /* orientation.js */,
 				6E4999DF18D49179008D16A8 /* player.js */,
 				149D73FF18DE083900E5A072 /* app.js */,
@@ -534,6 +541,7 @@
 		6E4999E018D49395008D16A8 /* css */ = {
 			isa = PBXGroup;
 			children = (
+				14EB99D91B66A79F00F5AC45 /* marksandspencer.css */,
 				6E4999E118D49395008D16A8 /* style.css */,
 				6E99BD1E1A8A5FA00025650B /* baku.css */,
 			);

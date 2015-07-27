@@ -1,0 +1,10 @@
+
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
+
+#videoplayer {
+	background: #e3e3e3;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
