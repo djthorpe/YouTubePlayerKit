@@ -8,3 +8,30 @@
 	padding-top: 50px;
 	padding-bottom: 50px;
 }
+
+.thumbnail-wrapper {
+	width: 96px;
+	height: 54px;
+	position: relative;
+	display: block;
+	overflow: hidden;
+}
+
+.thumbnail-wrapper img {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	display: block;
+	top: -9px;
+}
+
+.video-unselected {
+	border: 1px solid #e3e3e3;
+	background: #e3e3e3;
+}
+
+.video-selected {
+	border: 1px solid grey;
+	background: #e0e0e0;
+}
+

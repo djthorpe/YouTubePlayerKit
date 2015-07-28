@@ -16,9 +16,11 @@ var VIDEOS = { };
 
 var TAB_CLASS_SELECTED = "btn btn-danger";
 var TAB_CLASS_UNSELECTED = "btn btn-default";
+var VIDEO_CLASS_SELECTED = "media media-wrapper video-selected";
+var VIDEO_CLASS_UNSELECTED = "media media-wrapper video-unselected";
 
-// change this API key for one of your own
-var GOOGLE_API_KEY = "AIzaSyDlVQlburkZAFxwHKVRoq3xtexYjAsIm4M";
+// change this API key for one of your own, use Google Developer's Console
+var GOOGLE_API_KEY = "AIzaSyAjcdMmJjfmQD8eUOjpUIlaL6vwVHlLmRs";
 
 // Retrieve the list of videos in the specified playlist.
 function requestVideoPlaylist(playlist_id,playlist_title,callback,page_token) {
@@ -63,6 +65,16 @@ function setSelectedTab(tab_id) {
 	}
 }
 
+// Set selected video
+function setSelectedVideo(video_id) {
+	var video_node = document.getElementById(video_id);
+	var video_group = video_node.parentNode;
+	for(var i = 0; i < video_group.children.length; i++) {
+		video_group.children[i].className = (video_group.children[i].id==video_id) ? VIDEO_CLASS_SELECTED : VIDEO_CLASS_UNSELECTED;
+	}
+}
+
+
 // Load a particular video into the player
 function loadVideo(video) {
 	var video_id = video.snippet.resourceId.videoId;
@@ -79,6 +91,7 @@ function loadFirstVideoFromSelection(tab_id) {
 	var videos = VIDEOS[tab_id];
 	if(videos && videos.length) {
 		loadVideo(videos[0]);
+		setSelectedVideo(videos[0].id);
 	}
 }
 
@@ -92,6 +105,17 @@ function onClickTab(tab_id) {
 // Callback when a media item is clicked
 function onClickVideo(video) {
 	loadVideo(video);
+	setSelectedVideo(video.id);
+}
+
+// Callback when mouse is over a video selection
+function onMouseOverVideo(video) {
+	setSelectedVideo(video.id);
+}
+
+// Callback when mouse is out video selection
+function onMouseOutVideo(video) {
+	//setSelectedVideo();
 }
 
 // Create a video element
@@ -100,24 +124,35 @@ function createVideoElement(item) {
 	var left = document.createElement("div");
 	var body = document.createElement("div");
 	var heading = document.createElement("div");
-	var thumbnail = document.createElement("img");
+	var thumbnail = document.createElement("span");
+	var thumbnail_img = document.createElement("img");
 	wrapper.className = "media media-wrapper";
 	left.className = "media-left";
 	body.className = "media-body";
 	heading.className = "media-heading";
-	thumbnail.className = "media-object";
+	thumbnail_img.className = "media-object";
+	thumbnail.className = "thumbnail-wrapper";
+	
 	body.appendChild(heading);
 	wrapper.appendChild(left);
 	wrapper.appendChild(body);
 	left.appendChild(thumbnail);
+	thumbnail.appendChild(thumbnail_img);
 	
+	wrapper.id = item.id;
 	heading.innerText = item.snippet.title;
-	thumbnail.src = item.snippet.thumbnails.default.url;
-	thumbnail.width = item.snippet.thumbnails.default.width;
-	thumbnail.height = item.snippet.thumbnails.default.height;
+	thumbnail_img.src = item.snippet.thumbnails.default.url;
 
 	wrapper.addEventListener('click',function() {
 		onClickVideo(item);
+	});
+
+	wrapper.addEventListener('mouseover',function() {
+		onMouseOverVideo(item);
+	});
+
+	wrapper.addEventListener('mouseout',function() {
+		onMouseOutVideo(item);
 	});
 	
 	return wrapper;
