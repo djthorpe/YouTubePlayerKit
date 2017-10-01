@@ -1,18 +1,20 @@
-//
-//  MasterViewController.h
-//  YouTubeNowNext
-//
-//  Created by David Thorpe on 30/09/2017.
-//
 
 #import <UIKit/UIKit.h>
 
 @class DetailViewController;
+@class AppDelegate;
+@class Playlist;
+@class YouTube;
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController {
+	Playlist* _playlist;
+	YouTube* _youtube;
+}
 
+// PROPERTIES
 @property (strong, nonatomic) DetailViewController *detailViewController;
-
+@property (strong, nonatomic) UIBarButtonItem* refreshButton;
+@property (readonly) AppDelegate* appDelegate;
 
 @end
 

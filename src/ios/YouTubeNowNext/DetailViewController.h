@@ -1,16 +1,22 @@
-//
-//  DetailViewController.h
-//  YouTubeNowNext
-//
-//  Created by David Thorpe on 30/09/2017.
-//
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController
+// FORWARD CLASS DECLARATIONS
+@class AppDelegate;
+@class PlaylistItem;
+@class YouTubeEmbedService;
 
-@property (strong, nonatomic) NSDate *detailItem;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+// INTERFACE
+@interface DetailViewController : UIViewController {
+	@private
+	YouTubeEmbedService* _embedService;
+}
+
+// PROPERTIES
+@property (strong, nonatomic) PlaylistItem* detailItem;
+@property (weak, nonatomic) IBOutlet UILabel* detailDescriptionLabel;
+@property (readonly) AppDelegate* appDelegate;
+@property (weak, nonatomic) IBOutlet UIView* playerView;
 
 @end
 

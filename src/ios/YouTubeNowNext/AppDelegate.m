@@ -1,19 +1,25 @@
-//
-//  AppDelegate.m
-//  YouTubeNowNext
-//
-//  Created by David Thorpe on 30/09/2017.
-//
 
 #import "AppDelegate.h"
 #import "DetailViewController.h"
 
-@interface AppDelegate () <UISplitViewControllerDelegate>
-
-@end
-
 @implementation AppDelegate
 
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Properties
+
+@dynamic apiKey;
+@dynamic playlistId;
+
+-(NSString* )apiKey {
+	return @"AIzaSyBUxdBiIvhQVAkyD6iIaL_Xzts4dNq6FF0";
+}
+
+-(NSString* )playlistId {
+	return @"PLU12uITxBEPHOJO1FU8qll6gQmKcXp5S7";
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
@@ -51,8 +57,8 @@
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-
-#pragma mark - Split view
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UISplitViewControllerDelegate
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
     if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[DetailViewController class]] && ([(DetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {

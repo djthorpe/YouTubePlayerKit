@@ -1,34 +1,60 @@
-//
-//  MasterViewController.m
-//  YouTubeNowNext
-//
-//  Created by David Thorpe on 30/09/2017.
-//
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "Playlist.h"
+#import "PlaylistItem.h"
+#import "YouTube.h"
+#import "AppDelegate.h"
 
-@interface MasterViewController ()
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private Interface
 
-@property NSMutableArray *objects;
+@interface MasterViewController () <YouTubeDelegate>
 @end
 
 @implementation MasterViewController
 
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Properties
+
+-(AppDelegate* )appDelegate {
+	return (AppDelegate* )[[UIApplication sharedApplication] delegate];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Views
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-	self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-	self.navigationItem.rightBarButtonItem = addButton;
-	self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+	// Add YouTube
+	if(_youtube == nil) {
+		_youtube = [[YouTube alloc] initWithApiKey:[[self appDelegate] apiKey]];
+		[_youtube setDelegate:self];
+	}
+
+	// Add Playlist
+	if(_playlist == nil) {
+		_playlist = [Playlist new];
+	}
+
+	// Create refresh button
+	if([self refreshButton]==nil) {
+		[self setRefreshButton:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshPlaylist:)]];
+	}
+	self.navigationItem.rightBarButtonItem = [self refreshButton];
+	
+	// Wire up controller
+	self.detailViewController = (DetailViewController* )[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
 	self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
 	[super viewWillAppear:animated];
+	
+	// Refresh playlist
+	[self refreshPlaylist:self];
 }
 
 
@@ -38,65 +64,63 @@
 }
 
 
-- (void)insertNewObject:(id)sender {
-	if (!self.objects) {
-	    self.objects = [[NSMutableArray alloc] init];
+- (void)refreshPlaylist:(id)sender {
+	if([_youtube fetchPlaylist:[[self appDelegate] playlistId] into:_playlist]) {
+		[self.refreshButton setEnabled:NO];
 	}
-	[self.objects insertObject:[NSDate date] atIndex:0];
-	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-	[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-
+////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"showDetail"]) {
 	    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-	    NSDate *object = self.objects[indexPath.row];
-	    DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
+	    PlaylistItem* object = [_playlist objectAtIndex:indexPath.row];
+	    DetailViewController* controller = (DetailViewController* )[[segue destinationViewController] topViewController];
 	    [controller setDetailItem:object];
 	    controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
 	    controller.navigationItem.leftItemsSupplementBackButton = YES;
 	}
 }
 
-
+////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.objects.count;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [_playlist count];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-	NSDate *object = self.objects[indexPath.row];
-	cell.textLabel.text = [object description];
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+	cell.textLabel.text = [[_playlist objectAtIndex:indexPath.row] title];
 	return cell;
 }
 
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 	// Return NO if you do not want the specified item to be editable.
-	return YES;
+	return NO;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - YouTubeDelegate
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (editingStyle == UITableViewCellEditingStyleDelete) {
-	    [self.objects removeObjectAtIndex:indexPath.row];
-	    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-	} else if (editingStyle == UITableViewCellEditingStyleInsert) {
-	    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+-(void)youtube:(YouTube* )sender error:(NSError* )error {
+	NSLog(@"ERROR: %@",error);
+}
+
+-(void)youtube:(YouTube* )sender fetchPlaylistSuccess:(BOOL)success {
+	if(success) {
+		[[self tableView] reloadData];
 	}
+	[self.refreshButton setEnabled:YES];
 }
-
 
 @end

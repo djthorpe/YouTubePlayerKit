@@ -1,3 +1,6 @@
 [submodule "third_party/google-api-objectivec-client"]
 	path = third_party/google-api-objectivec-client
 	url = git@github.com:google/google-api-objectivec-client.git
+[submodule "third_party/YouTubeEmbeddedPlayerFramework"]
+	path = third_party/YouTubeEmbeddedPlayerFramework
+	url = git@github.com:djthorpe/YouTubeEmbeddedPlayerFramework.git
