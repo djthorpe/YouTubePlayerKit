@@ -5,10 +5,13 @@ This is an example implementation of an embeddable YouTube Player for Mac OS X a
 
 ![Logo](https://raw.github.com/djthorpe/YouTubePlayerKit/master/etc/screenshot.png)
 
-There are some third party dependencies within the project, so when you clone it you will then need to synchronize the submodules as follows:
+There are some third party dependencies within the project, so when you clone it you will then need to synchronize the submodules before you build:
 
 ```
-git submodule sync --init --recursive
+git clone git@github.com:djthorpe/YouTubePlayerKit.git
+cd YouTubePlayerKit
+git submodule update --init --recursive
+etc/build-release.sh 
 ```
 
 ## Compiling and using the project - MacOS
