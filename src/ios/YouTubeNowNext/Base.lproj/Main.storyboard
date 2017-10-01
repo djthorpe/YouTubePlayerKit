@@ -38,12 +38,10 @@
                                 <rect key="frame" x="0.0" y="64" width="415" height="221"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Detail view content goes here" lineBreakMode="wordWrap" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="0.0" y="293" width="414" height="161"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFZ-eW-QyL">
+                                <rect key="frame" x="0.0" y="293" width="414" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -55,26 +53,29 @@
                             <constraint firstItem="KCf-gE-iOe" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="Ne3-7f-Mum"/>
                             <constraint firstItem="KCf-gE-iOe" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="PuQ-Gh-VF6"/>
                             <constraint firstItem="KCf-gE-iOe" firstAttribute="top" secondItem="svH-Pt-448" secondAttribute="topMargin" id="VMX-pC-3NX"/>
+                            <constraint firstItem="aFZ-eW-QyL" firstAttribute="trailing" secondItem="VUw-jc-0yf" secondAttribute="trailing" id="Wa9-dp-Xex"/>
                             <constraint firstItem="KCf-gE-iOe" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="XtQ-e6-j7Y"/>
                             <constraint firstItem="KCf-gE-iOe" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="amm-OP-2jC"/>
+                            <constraint firstItem="aFZ-eW-QyL" firstAttribute="top" secondItem="KCf-gE-iOe" secondAttribute="bottom" constant="8" id="dec-of-Bdl"/>
                             <constraint firstAttribute="bottom" secondItem="KCf-gE-iOe" secondAttribute="bottom" constant="451" id="dih-hF-Pic"/>
                             <constraint firstItem="KCf-gE-iOe" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" id="gui-F6-ugc"/>
                             <constraint firstItem="KCf-gE-iOe" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="hev-7M-xWf"/>
                             <constraint firstItem="KCf-gE-iOe" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" id="rfU-rP-4yo"/>
+                            <constraint firstItem="aFZ-eW-QyL" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="sXR-iN-BD5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KCf-gE-iOe" secondAttribute="trailing" constant="-21" id="xJq-H1-zeL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Live Stream" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="detailDescriptionLabel" destination="aFZ-eW-QyL" id="EZb-2u-mc8"/>
                         <outlet property="playerView" destination="KCf-gE-iOe" id="M9U-4H-lVo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="128"/>
+            <point key="canvasLocation" x="707.24637681159425" y="127.98913043478262"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -127,7 +128,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Popular Live Streams" id="Zdf-7t-Un8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>

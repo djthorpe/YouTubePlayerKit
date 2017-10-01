@@ -30,7 +30,6 @@
 -(void)configureVideoView {
 	// Initialize YouTube Embed Service.
 	if(_embedService==nil) {
-		NSLog(@"EMBED SERVICE START");
 		_embedService = [YouTubeEmbedService sharedInstance];
 		[_embedService initializeWithDeveloperKey:[self.appDelegate apiKey]];
 		[self setPlayerViewController:[_embedService createPlayerViewController]];
@@ -60,6 +59,13 @@
 -(void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+	// Stop player then reset player
+	[self.playerViewController stop];
+	[self.playerViewController reset];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

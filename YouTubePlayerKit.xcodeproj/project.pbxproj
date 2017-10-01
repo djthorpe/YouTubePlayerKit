@@ -213,6 +213,7 @@
 		6ECBD93D1F80EE3B004242F1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6ECBD93B1F80EE3B004242F1 /* README.md */; };
 		6ECBD93E1F80EE4A004242F1 /* YouTubeEmbeddedPlayerFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECBD93A1F80EE3B004242F1 /* YouTubeEmbeddedPlayerFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6ECBD93F1F80EEC6004242F1 /* YouTubeEmbeddedPlayerFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECBD93A1F80EE3B004242F1 /* YouTubeEmbeddedPlayerFramework.framework */; };
+		6ED00CD51F81429500046178 /* yt_icon_rgb-180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB8F0E31F80CD020062AA62 /* yt_icon_rgb-180x180.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -7166,6 +7167,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ED00CD51F81429500046178 /* yt_icon_rgb-180x180.png in Resources */,
 				6EB8F0DE1F7FCBE90062AA62 /* Main.storyboard in Resources */,
 				6EB8F0DD1F7FCBE60062AA62 /* LaunchScreen.storyboard in Resources */,
 				6E2841F01F80DD8700FF308E /* Info.plist in Resources */,
