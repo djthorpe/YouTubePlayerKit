@@ -214,6 +214,7 @@
 		6ECBD93E1F80EE4A004242F1 /* YouTubeEmbeddedPlayerFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECBD93A1F80EE3B004242F1 /* YouTubeEmbeddedPlayerFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6ECBD93F1F80EEC6004242F1 /* YouTubeEmbeddedPlayerFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECBD93A1F80EE3B004242F1 /* YouTubeEmbeddedPlayerFramework.framework */; };
 		6ED00CD51F81429500046178 /* yt_icon_rgb-180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB8F0E31F80CD020062AA62 /* yt_icon_rgb-180x180.png */; };
+		6ED00CED1F8149CC00046178 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2A8881882E89500C2A160 /* Icons.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2829,6 +2830,7 @@
 		6ED00CE91F81467A00046178 /* yt_icon_rgb-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yt_icon_rgb-80x80.png"; sourceTree = "<group>"; };
 		6ED00CEA1F8146EC00046178 /* yt_icon_rgb-167x167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yt_icon_rgb-167x167.png"; sourceTree = "<group>"; };
 		6ED00CEB1F8146EC00046178 /* yt_icon_rgb-87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yt_icon_rgb-87x87.png"; sourceTree = "<group>"; };
+		6ED00CEC1F81487400046178 /* yt_icon_rgb-1024x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yt_icon_rgb-1024x1024.png"; sourceTree = "<group>"; };
 		6EF14A4B1882D6D500E81854 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6729,6 +6731,7 @@
 				6ED00CEA1F8146EC00046178 /* yt_icon_rgb-167x167.png */,
 				6EB8F0E31F80CD020062AA62 /* yt_icon_rgb-180x180.png */,
 				6EB8F0E01F80CD020062AA62 /* yt_icon_rgb-734x734.png */,
+				6ED00CEC1F81487400046178 /* yt_icon_rgb-1024x1024.png */,
 			);
 			path = etc;
 			sourceTree = "<group>";
@@ -7187,6 +7190,7 @@
 				6EB8F0DE1F7FCBE90062AA62 /* Main.storyboard in Resources */,
 				6EB8F0DD1F7FCBE60062AA62 /* LaunchScreen.storyboard in Resources */,
 				6E2841F01F80DD8700FF308E /* Info.plist in Resources */,
+				6ED00CED1F8149CC00046178 /* Icons.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7700,6 +7704,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "$(SRCROOT)/src/ios/YouTubeNowNext/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mutablelogic.YouTubeNowNext;
@@ -7739,6 +7744,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "$(SRCROOT)/src/ios/YouTubeNowNext/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mutablelogic.YouTubeNowNext;
