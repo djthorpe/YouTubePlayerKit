@@ -101,12 +101,6 @@
       "idiom" : "ipad",
       "filename" : "yt_icon_rgb-167x167.png",
       "scale" : "2x"
-    },
-    {
-      "size" : "1024x1024",
-      "idiom" : "ios-marketing",
-      "filename" : "yt_icon_rgb-1024x1024.png",
-      "scale" : "1x"
     }
   ],
   "info" : {
